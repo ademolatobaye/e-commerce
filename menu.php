@@ -142,6 +142,36 @@
     </div>
     <!-- END-->
 
+     <div class="modal fade" id="newcategory">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content modal-content-demo">
+                <div class="modal-header">
+                    <h6 class="modal-title">Add New Category</h6>
+                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                    <form method="post" action="">
+                        
+                      <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Name of Category</label>
+                        <input type="text" class="form-control" id="recipient-name" name="categoryname">
+                      </div>
+
+                      <div class="modal-footer">
+                    <button class="btn ripple btn-success" type="submit" name="addcategory">Add Category</button>
+                </div>
+
+                    </form>
+
+                  </div>
+                
+            </div>
+        </div>
+    </div>
+
             
  
  <!--APP-SIDEBAR-->

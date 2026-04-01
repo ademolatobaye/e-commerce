@@ -108,12 +108,11 @@ $rows = mysqli_fetch_array($result);
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <span class="text-muted fs-12"><span class="text-secondary"><i
-                                                            class="fe fe-arrow-up-circle  text-secondary"></i> 5%</span>
-                                                    Last week</span> -->
+                                                
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
                                         <div class="card overflow-hidden">
                                             <div class="card-body">
@@ -131,6 +130,7 @@ $rows = mysqli_fetch_array($result);
                                                         }
                                                         ?>
                                                     </div>
+
                                                     <div class="ms-auto">
                                                         <div class="chart-wrapper mt-1">
                                                             <canvas id="leadschart"
@@ -138,19 +138,17 @@ $rows = mysqli_fetch_array($result);
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <span class="text-muted fs-12"><span class="text-pink"><i
-                                                            class="fe fe-arrow-down-circle text-pink"></i> 0.75%</span>
-                                                    Last 6 days</span> -->
+                                               
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
                                         <div class="card overflow-hidden">
                                             <div class="card-body">
                                                 <div class="d-flex">
                                                     <div class="mt-2">
-                                                        <h6 class="">Total Expenses</h6>
-                                                        <h2 class="mb-0 number-font">$76,965</h2>
+                                                        <h2 class="mb-0 number-font"><a href="" data-bs-toggle="modal" data-bs-target="#newcategory">Add New Category</a></h2>
                                                     </div>
                                                     <div class="ms-auto">
                                                         <div class="chart-wrapper mt-1">
@@ -159,13 +157,12 @@ $rows = mysqli_fetch_array($result);
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <span class="text-muted fs-12"><span class="text-green"><i
-                                                            class="fe fe-arrow-up-circle text-green"></i> 0.9%</span>
-                                                    Last 9 days</span> -->
+                                                
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
+
+                                    <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
                                         <div class="card overflow-hidden">
                                             <div class="card-body">
                                                 <div class="d-flex">
@@ -180,12 +177,11 @@ $rows = mysqli_fetch_array($result);
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <span class="text-muted fs-12"><span class="text-warning"><i
-                                                            class="fe fe-arrow-up-circle text-warning"></i> 0.6%</span>
-                                                    Last year</span> -->
+                                               
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
+
                                 </div>
                             </div>
                         </div>
@@ -211,6 +207,7 @@ $rows = mysqli_fetch_array($result);
                                     </div>
                                 </div>
                             </div>
+
                             <!-- COL END -->
                             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
                                 <div class="card overflow-hidden">
@@ -253,12 +250,14 @@ $rows = mysqli_fetch_array($result);
                                 </div>
                             </div>
                             <!-- COL END -->
+                             
                         </div>
                         <!-- ROW-2 END -->
 
                         <!-- ROW-3 -->
                         <div class="row">
-                            <div class="col-xl-4 col-md-12">
+
+                            <!-- <div class="col-xl-4 col-md-12">
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title fw-semibold">Daily Activity</h4>
@@ -359,6 +358,7 @@ $rows = mysqli_fetch_array($result);
                                                     <p class="text-muted fs-12">Adam Berry finished task on<a href="javascript:void(0)"
                                                             class="fw-semibold"> Project Management</a></p>
                                                 </div>
+
                                                 <div class="ms-auto d-md-flex">
                                                     <a href="javascript:void(0)" class="text-muted me-2" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" title="Edit" aria-label="Edit"><span
@@ -370,80 +370,9 @@ $rows = mysqli_fetch_array($result);
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-12">
-                                <div class="card overflow-hidden">
-                                    <div class="card-header">
-                                        <div>
-                                            <h3 class="card-title">Sales Report by Locations with Devices</h3>
-                                        </div>
-                                    </div>
-                                    <div class="card-body p-0 mt-2">
-                                        <div class="">
-                                            <div id="world-map-markers1" class="worldh world-map h-250"></div>
-                                        </div>
-                                        <div class="table-responsive mt-2 text-center">
-                                            <table class="table text-nowrap border-dashed mb-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-start">Device</th>
-                                                        <th class="">USA</th>
-                                                        <th class="">India</th>
-                                                        <th class="">Bahrain</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="text-start p-4"><span
-                                                                class="sales-icon text-primary mx-2 brround bg-primary-transparent p-2"><svg
-                                                                    xmlns="http://www.w3.org/2000/svg" width="18"
-                                                                    height="18" fill="currentColor" class="bi
-                                    bi-phone" viewBox="0 0 16 16">
-                                                                    <path
-                                                                        d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z" />
-                                                                    <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-                                                                </svg></span><span class="mobile">Mobiles</span>
-                                                        </td>
-                                                        <td class="p-4">17%</td>
-                                                        <td class="p-4">22%</td>
-                                                        <td class="p-4">11%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-start p-4"><span
-                                                                class="sales-icon text-secondary mx-2 brround bg-secondary-transparent p-2"><svg
-                                                                    xmlns="http://www.w3.org/2000/svg" width="18"
-                                                                    height="18" fill="currentColor
-                                " class="bi bi-display" viewBox="0 0 16 16">
-                                                                    <path d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4c0 .667.083 1.167.25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75c.167-.333.25-.833.25-1.5H2s-2 0-2-2V4zm1.398-.855a.758.758 0 0 0-.254.302A1.46 1.46
-                                    0 0 0 1 4.01V10c0 .325.078.502.145.602.07.105.17.188.302.254a1.464 1.464 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.758.758 0 0 0 .254-.302 1.464 1.464 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.757.757
-                                    0 0 0-.302-.254A1.46 1.46 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145z" />
-                                                                </svg></span>Desktops</td>
-                                                        <td class="p-4">34%</td>
-                                                        <td class="p-4">76%</td>
-                                                        <td class="p-4">58%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-start p-4"><span
-                                                                class="sales-icon text-danger mx-2 brround bg-danger-transparent p-2"><svg
-                                                                    xmlns="http://www.w3.org/2000/svg" width="18"
-                                                                    height="18" fill="currentColor" class="bi bi-tablet
-                                " viewBox="0 0 16 16">
-                                                                    <path
-                                                                        d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
-                                                                    <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-                                                                </svg></span>Tablets</td>
-                                                        <td class="p-4">56%</td>
-                                                        <td class="p-4">83%</td>
-                                                        <td class="p-4">66%</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <!--end /table-->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-12">
+                            </div> -->
+
+                            <div class="col-xl-12 col-lg-6 col-md-12">
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title fw-semibold">Browser Usage</h4>

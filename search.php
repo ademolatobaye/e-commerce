@@ -60,8 +60,6 @@ $rows = mysqli_fetch_array($result);
     <div class="page">
         <div class="page-main">
 
-           
-
             <!--app-content open-->
             <div class="main-content app-content mt-0">
                 <div class="side-app">
@@ -168,8 +166,6 @@ $rows = mysqli_fetch_array($result);
                             </div>
                         </div>
                         <!-- End Row -->
-
-                       
                        
                     </div>
                     <!-- CONTAINER CLOSED -->
@@ -178,10 +174,6 @@ $rows = mysqli_fetch_array($result);
             </div>
             <!--app-content closed-->
         </div>
-
-       
-
-       
 
         <!-- FOOTER -->
         <footer class="footer">

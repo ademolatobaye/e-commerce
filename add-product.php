@@ -87,10 +87,15 @@ $rows = mysqli_fetch_array($result);
                                         <?php
                                         include("db_conn.php");
                                         date_default_timezone_set("Africa/Lagos");
-                                        $rand= rand(1000,9999);
                                         $today= date("dmyhis");
                                         $date= date("Y-m-d");
-                                        $UIN= "PRODUCT" . $today . $rand;
+                                        $business_name= "DEEMART";
+                                        function generateCustomerID($productname, $business_name, $length = 4){
+                                        $productname = strtoupper(substr(preg_replace('/\s+/', '', $productname), 0, 4));
+                                        $businessname = strtoupper(substr(preg_replace('/\s+/', '', $business_name), 0, 5));
+                                        $crandom_part = strtoupper(substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length));
+                                        return $businessname . $productname . $crandom_part;
+                                    }
                                         error_reporting(E_ALL);
                                         if(isset($_REQUEST["submit"])){
                                             $productname = trim(addslashes($_REQUEST["productname"]));
@@ -101,6 +106,7 @@ $rows = mysqli_fetch_array($result);
                                             $category =  trim(addslashes($_REQUEST["category"]));
                                             $description = trim(addslashes($_REQUEST["description"]));
                                             $staff = $session_role;
+                                            $customerID = generateCustomerID($productname, $business_name);
 
                                             // FILE UPLOAD
                                             $productimage = $_FILES["productimage"]['name'];
@@ -122,7 +128,7 @@ $rows = mysqli_fetch_array($result);
                                     //  END
 
                                             // INSERTING VALUES INTO DATABASE.
-                                        $sql="INSERT INTO product_table (uin, productname, `date`, costprice, sellingprice, quantity, productimage, profit, category, `description`, staff) VALUES ('$UIN', '$productname', '$date', '$costprice', '$sellingprice', '$quantity', '$productimage', '$profit', '$category', '$description', '$staff')";
+                                        $sql="INSERT INTO product_table (uin, productname, `date`, costprice, sellingprice, quantity, productimage, profit, category, `description`, staff) VALUES ('$customerID', '$productname', '$date', '$costprice', '$sellingprice', '$quantity', '$productimage', '$profit', '$category', '$description', '$staff')";
                                         mysqli_query($conn, $sql) or die(mysqli_error($conn));
                                         $num = mysqli_insert_id($conn);
                                         if(mysqli_affected_rows($conn)!= 1){
@@ -146,8 +152,6 @@ $rows = mysqli_fetch_array($result);
                                     </div>
                                     <div class="card-body">
                                         <div class="row mb-4">
-
-                                        <input type="hidden" class="form-control" name="uin" value="<?php echo $UIN;?>">
 
                                         <input type="hidden" class="form-control" name="date" value="<?php echo $date;?>">
 
@@ -191,7 +195,7 @@ $rows = mysqli_fetch_array($result);
                                                     <option value="">Select Category</option>
                                                     <option value="Food">Food</option>
                                                     <option value="Drinks">Drinks</option>
-                                                    <option value="Shoe">Shoe</option>
+                                                    <option value="Shoes">Shoes</option>
                                                     <option value="Wristwatch">Wristwatch</option>
                                                     <option value="Gadget">Gadget</option>
                                                     <option value="Electronics">Electronics</option>
