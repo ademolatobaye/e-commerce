@@ -1,3219 +1,4558 @@
 <?php
-include('session-check.php');
-include('db_conn.php');
-$id = 1;
-$sql = "SELECT * FROM stafftable WHERE id='$id'";
-$result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-$rows = mysqli_fetch_array($result);
-
-
+session_start();
+include("db_conn.php");
 ?>
 
-<!doctype html>
-<html lang="en" dir="ltr">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-
-    <!-- META DATA -->
     <meta charset="UTF-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <title>DEEMART - Multipurpose E-Commerce Web Application</title>
+
+    <meta name="keywords" content="" />
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta name="keywords" content="">
 
-    <!-- FAVICON -->
-    <!-- <link rel="shortcut icon" type="image/x-icon" href="assets/images/brand/favicon.ico"> -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/icons/favicon.png">
 
-    <!-- TITLE -->
-    <title>THEADEMOLA || Staff Dashboard</title>
+    <!-- WebFont.js -->
+    <script>
+        WebFontConfig = {
+            google: { families: ['Poppins:400,500,600,700,800'] }
+        };
+        (function (d) {
+            var wf = d.createElement('script'), s = d.scripts[0];
+            wf.src = 'assets/js/webfont.js';
+            wf.async = true;
+            s.parentNode.insertBefore(wf, s);
+        })(document);
+    </script>
 
-    <!-- BOOTSTRAP CSS -->
-    <link id="style" href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preload" href="assets/vendor/fontawesome-free/webfonts/fa-regular-400.woff2" as="font" type="font/woff2"
+        crossorigin="anonymous">
+    <link rel="preload" href="assets/vendor/fontawesome-free/webfonts/fa-solid-900.woff2" as="font" type="font/woff2"
+        crossorigin="anonymous">
+    <link rel="preload" href="assets/vendor/fontawesome-free/webfonts/fa-brands-400.woff2" as="font" type="font/woff2"
+        crossorigin="anonymous">
+    <link rel="preload" href="assets/fonts/wolmart.woff?png09e" as="font" type="font/woff" crossorigin="anonymous">
 
-    <!-- STYLE CSS -->
-     <link href="assets/css/style.css" rel="stylesheet">
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/vendor/fontawesome-free/css/all.min.css">
 
-	<!-- Plugins CSS -->
-    <link href="assets/css/plugins.css" rel="stylesheet">
+    <!-- Plugins CSS -->
+    <!-- <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/vendor/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendor/magnific-popup/magnific-popup.min.css">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css">
 
-    <!--- FONT-ICONS CSS -->
-    <link href="assets/css/icons.css" rel="stylesheet">
-
-    <!-- INTERNAL Switcher css -->
-    <link href="assets/switcher/css/switcher.css" rel="stylesheet">
-    <link href="assets/switcher/demo.css" rel="stylesheet">
+    <!-- Default CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/demo1.min.css">
 
 </head>
 
-<body class="app sidebar-mini ltr light-mode">
-    <?php
-    include("menu.php");
-    ?>
+<body class="home">
+    <div class="page-wrapper">
+        <h1 class="d-none">DEE MART - Multipurpose E-Commerce Web Application</h1>
 
-    <!-- GLOBAL-LOADER -->
-    <div id="global-loader">
-        <img src="assets/images/loader.svg" class="loader-img" alt="Loader">
-    </div>
-    <!-- /GLOBAL-LOADER -->
+        <?php
+        include("header.php");
+        ?>
 
-    <!-- PAGE -->
-    <div class="page">
-        <div class="page-main">
 
-            <!--app-content open-->
-            <div class="main-content app-content mt-0">
-                <div class="side-app">
+        <!-- Start of Main-->
+        <main class="main">
+            <section class="intro-section">
+                <div class="swiper-container swiper-theme nav-inner pg-inner swiper-nav-lg animation-slider pg-xxl-hide nav-xxl-show nav-hide"
+                    data-swiper-options="{
+                    'slidesPerView': 1,
+                    'autoplay': {
+                        'delay': 8000,
+                        'disableOnInteraction': false
+                    }
+                }">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide banner banner-fixed intro-slide intro-slide1"
+                            style="background-color: #ebeef2;">
+                            <div class="container">
+                                <figure class="slide-image skrollable slide-animate">
+                                    <img src="assets/images/demos/demo1/sliders/shoes.png" alt="Banner"
+                                        data-bottom-top="transform: translateY(10vh);"
+                                        data-top-bottom="transform: translateY(-10vh);" width="474" height="397">
+                                </figure>
+                                <div class="banner-content y-50 text-right">
+                                    <h5 class="banner-subtitle font-weight-normal text-default ls-50 lh-1 mb-2 slide-animate"
+                                        data-animation-options="{
+                                    'name': 'fadeInRightShorter',
+                                    'duration': '1s',
+                                    'delay': '.2s'
+                                }">
+                                        Men’s <span class="p-relative d-inline-block">Custom</span>
+                                    </h5>
+                                    <h3 class="banner-title font-weight-bolder ls-25 lh-1 slide-animate"
+                                        data-animation-options="{
+                                    'name': 'fadeInRightShorter',
+                                    'duration': '1s',
+                                    'delay': '.4s'
+                                }">
+                                         SHOES
+                                    </h3>
+                                    <p class="font-weight-normal text-default slide-animate" data-animation-options="{
+                                    'name': 'fadeInRightShorter',
+                                    'duration': '1s',
+                                    'delay': '.6s'
+                                }">
+                                    </p>
 
-                    <!-- CONTAINER -->
-                    <div class="main-container container-fluid">
+                                    <a href="shop.php"
+                                        class="btn btn-dark btn-outline btn-rounded btn-icon-right slide-animate"
+                                        data-animation-options="{
+                                    'name': 'fadeInRightShorter',
+                                    'duration': '1s',
+                                    'delay': '.8s'
+                                }">SHOP NOW<i class="w-icon-long-arrow-right"></i></a>
 
-                        <!-- PAGE-HEADER -->
-                        <div class="page-header">
-                            <h1 class="page-title">Welcome back, <?php echo $session_role?> <?php echo $session_fullname;?></h1>
-                            <div>
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                                </ol>
+                                </div>
+                                <!-- End of .banner-content -->
+                            </div>
+                            <!-- End of .container -->
+                        </div>
+                        <!-- End of .intro-slide1 -->
+
+                        <div class="swiper-slide banner banner-fixed intro-slide intro-slide2"
+                            style="background-color: #ebeef2;">
+                            <div class="container">
+                                <figure class="slide-image skrollable slide-animate" data-animation-options="{
+                                    'name': 'fadeInUpShorter',
+                                    'duration': '1s'
+                                }">
+                                    <img src="assets/images/demos/demo1/sliders/men.png" alt="Banner"
+                                        data-bottom-top="transform: translateX(10vh);"
+                                        data-top-bottom="transform: translateX(-10vh);" width="480" height="633">
+                                </figure>
+                                <div class="banner-content d-inline-block y-50">
+                                    <h5 class="banner-subtitle font-weight-normal text-default ls-50 slide-animate"
+                                        data-animation-options="{
+                                        'name': 'fadeInUpShorter',
+                                        'duration': '1s',
+                                        'delay': '.2s'
+                                    }">
+                                        Limited<span class="text-secondary"> Collection</span>
+                                    </h5>
+                                    <h3 class="banner-title font-weight-bolder text-dark mb-0 ls-25 slide-animate"
+                                        data-animation-options="{
+                                        'name': 'fadeInUpShorter',
+                                        'duration': '1s',
+                                        'delay': '.4s'
+                                    }">
+                                       School Bag
+                                    </h3>
+                                    <p class="font-weight-normal text-default slide-animate" data-animation-options="{
+                                        'name': 'fadeInUpShorter',
+                                        'duration': '1s',
+                                        'delay': '.8s'
+                                    }">
+
+                                    </p>
+                                    <a href="shop.php"
+                                        class="btn btn-dark btn-outline btn-rounded btn-icon-right slide-animate"
+                                        data-animation-options="{
+                                        'name': 'fadeInUpShorter',
+                                        'duration': '1s',
+                                        'delay': '1s'
+                                    }">
+                                        SHOP NOW<i class="w-icon-long-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <!-- End of .banner-content -->
+                            </div>
+                            <!-- End of .container -->
+                        </div>
+                        <!-- End of .intro-slide2 -->
+
+                        <div class="swiper-slide banner banner-fixed intro-slide intro-slide3"
+                            style="background-color: #f0f1f2;">
+                            <div class="container">
+                                <figure class="slide-image skrollable slide-animate" data-animation-options="{
+                                    'name': 'fadeInDownShorter',
+                                    'duration': '1s'
+                                }">
+                                    <img src="assets/images/demos/demo1/sliders/skate.png" alt="Banner"
+                                        data-bottom-top="transform: translateY(10vh);"
+                                        data-top-bottom="transform: translateY(-10vh);" width="310" height="444">
+                                </figure>
+                                <div class="banner-content text-right y-50">
+                                    <p class="font-weight-normal text-default text-uppercase mb-0 slide-animate"
+                                        data-animation-options="{
+                                        'name': 'fadeInLeftShorter',
+                                        'duration': '1s',
+                                        'delay': '.6s'
+                                    }">
+
+                                    </p>
+                                    <h5 class="banner-subtitle font-weight-normal text-default ls-25 slide-animate"
+                                        data-animation-options="{
+                                        'name': 'fadeInLeftShorter',
+                                        'duration': '1s',
+                                        'delay': '.4s'
+                                    }">
+                                        Trending Collection
+                                    </h5>
+                                    <h3 class="banner-title p-relative font-weight-bolder ls-50 slide-animate"
+                                        data-animation-options="{
+                                        'name': 'fadeInLeftShorter',
+                                        'duration': '1s',
+                                        'delay': '.2s'
+                                    }"><span class="text-white mr-4">Original Head</span>-set
+                                    </h3>
+                                    <div class="btn-group slide-animate" data-animation-options="{
+                                        'name': 'fadeInLeftShorter',
+                                        'duration': '1s',
+                                        'delay': '.8s'
+                                    }">
+                                        <a href="shop-list.html"
+                                            class="btn btn-dark btn-outline btn-rounded btn-icon-right">SHOP
+                                            NOW<i class="w-icon-long-arrow-right"></i></a>
+                                    </div>
+                                    <!-- End of .banner-content -->
+                                </div>
+                                <!-- End of .container -->
                             </div>
                         </div>
-                        <!-- PAGE-HEADER END -->
-
-                        <!-- ROW-1 -->
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-                                        <div class="card overflow-hidden">
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="mt-2">
-                                                        <h6 class="">Total Users</h6>
-                                                         <?php
-                                                        include("db_conn.php");
-                                                        $sql="SELECT COUNT(*) AS totalcustomers FROM customertable";
-                                                        $result=mysqli_query($conn, $sql);
-                                                        while($count= mysqli_fetch_array($result)){
-                                                        ?>
-                                                        <h2 class="mb-0 number-font"><?php echo $count['totalcustomers']; ?></h2>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </div>
-                                                    <div class="ms-auto">
-                                                        <div class="chart-wrapper mt-1">
-                                                            <canvas id="saleschart"
-                                                                class="h-8 w-9 chart-dropshadow"></canvas>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-                                        <div class="card overflow-hidden">
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="mt-2">
-                                                        <h6 class="">Total Profit</h6>
-                                                         <?php
-                                                        include("db_conn.php");
-                                                        $sql="SELECT SUM(profit) AS totalprofit FROM product_table";
-                                                        $result= mysqli_query($conn, $sql);
-                                                        while($count= mysqli_fetch_array($result)){
-                                                        ?>
-                                                        <h2 class="mb-0 number-font">&#8358;<?php echo number_format($count['totalprofit'], 2); ?></h2>
-                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </div>
-
-                                                    <div class="ms-auto">
-                                                        <div class="chart-wrapper mt-1">
-                                                            <canvas id="leadschart"
-                                                                class="h-8 w-9 chart-dropshadow"></canvas>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-                                        <div class="card overflow-hidden">
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="mt-2">
-                                                        <h2 class="mb-0 number-font"><a href="" data-bs-toggle="modal" data-bs-target="#newcategory">Add New Category</a></h2>
-                                                    </div>
-                                                    <div class="ms-auto">
-                                                        <div class="chart-wrapper mt-1">
-                                                            <canvas id="profitchart"
-                                                                class="h-8 w-9 chart-dropshadow"></canvas>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-                                        <div class="card overflow-hidden">
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="mt-2">
-                                                        <h6 class="">Total Cost</h6>
-                                                        <h2 class="mb-0 number-font">$59,765</h2>
-                                                    </div>
-                                                    <div class="ms-auto">
-                                                        <div class="chart-wrapper mt-1">
-                                                            <canvas id="costchart"
-                                                                class="h-8 w-9 chart-dropshadow"></canvas>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                               
-                                            </div>
-                                        </div>
-                                    </div> -->
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ROW-1 END -->
-
-                        <!-- ROW-2 -->
-                        <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Sales Analytics</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="d-flex mx-auto text-center justify-content-center mb-4">
-                                            <div class="d-flex text-center justify-content-center me-3"><span
-                                                    class="dot-label bg-primary my-auto"></span>Total Sales</div>
-                                            <div class="d-flex text-center justify-content-center"><span
-                                                    class="dot-label bg-secondary my-auto"></span>Total Orders</div>
-                                        </div>
-                                        <div class="chartjs-wrapper-demo">
-                                            <canvas id="transactions" class="chart-dropshadow"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- COL END -->
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
-                                <div class="card overflow-hidden">
-                                    <div class="card-body pb-0 bg-recentorder">
-                                        <h3 class="card-title text-white">Recent Orders</h3>
-                                        <div class="chartjs-wrapper-demo">
-                                            <canvas id="recentorders" class="chart-dropshadow"></canvas>
-                                        </div>
-                                    </div>
-                                    <div id="flotback-chart" class="flot-background"></div>
-                                    <div class="card-body">
-                                        <div class="d-flex mb-4 mt-3">
-                                            <div
-                                                class="avatar avatar-md bg-secondary-transparent text-secondary bradius me-3">
-                                                <i class="fe fe-check"></i>
-                                            </div>
-                                            <div class="">
-                                                <h6 class="mb-1 fw-semibold">Delivered Orders</h6>
-                                                <p class="fw-normal fs-12"> <span class="text-success">3.5%</span>
-                                                    increased </p>
-                                            </div>
-                                            <div class=" ms-auto my-auto">
-                                                <p class="fw-bold fs-20"> 1,768 </p>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex">
-                                            <div class="avatar  avatar-md bg-pink-transparent text-pink bradius me-3">
-                                                <i class="fe fe-x"></i>
-                                            </div>
-                                            <div class="">
-                                                <h6 class="mb-1 fw-semibold">Cancelled Orders</h6>
-                                                <p class="fw-normal fs-12"> <span class="text-success">1.2%</span>
-                                                    increased </p>
-                                            </div>
-                                            <div class=" ms-auto my-auto">
-                                                <p class="fw-bold fs-20 mb-0"> 3,675 </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- COL END -->
-                             
-                        </div>
-                        <!-- ROW-2 END -->
-
-                        <!-- ROW-3 -->
-                        <div class="row">
-
-                            <!-- <div class="col-xl-4 col-md-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title fw-semibold">Daily Activity</h4>
-                                    </div>
-                                    <div class="card-body pb-0">
-                                        <ul class="task-list">
-                                            <li class="d-sm-flex">
-                                                <div>
-                                                    <i class="task-icon bg-primary"></i>
-                                                    <h6 class="fw-semibold">Task Finished<span
-                                                            class="text-muted fs-11 mx-2 fw-normal">09 July 2021</span>
-                                                    </h6>
-                                                    <p class="text-muted fs-12">Adam Berry finished task on<a href="javascript:void(0)"
-                                                            class="fw-semibold"> Project Management</a></p>
-                                                </div>
-                                                <div class="ms-auto d-md-flex">
-                                                    <a href="javascript:void(0)" class="text-muted me-2" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Edit" aria-label="Edit"><span
-                                                            class="fe fe-edit"></span></a>
-                                                    <a href="javascript:void(0)" class="text-muted"><span
-                                                            class="fe fe-trash-2"></span></a>
-                                                </div>
-                                            </li>
-                                            <li class="d-sm-flex">
-                                                <div>
-                                                    <i class="task-icon bg-secondary"></i>
-                                                    <h6 class="fw-semibold">New Comment<span
-                                                            class="text-muted fs-11 mx-2 fw-normal">05 July 2021</span>
-                                                    </h6>
-                                                    <p class="text-muted fs-12">Victoria commented on Project <a
-                                                            href="javascript:void(0)" class="fw-semibold"> AngularJS Template</a></p>
-                                                </div>
-                                                <div class="ms-auto d-md-flex">
-                                                    <a href="javascript:void(0)" class="text-muted me-2" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Edit" aria-label="Edit"><span
-                                                            class="fe fe-edit"></span></a>
-                                                    <a href="javascript:void(0)" class="text-muted"><span
-                                                            class="fe fe-trash-2"></span></a>
-                                                </div>
-                                            </li>
-                                            <li class="d-sm-flex">
-                                                <div>
-                                                    <i class="task-icon bg-success"></i>
-                                                    <h6 class="fw-semibold">New Comment<span
-                                                            class="text-muted fs-11 mx-2 fw-normal">25 June 2021</span>
-                                                    </h6>
-                                                    <p class="text-muted fs-12">Victoria commented on Project <a
-                                                            href="javascript:void(0)" class="fw-semibold"> AngularJS Template</a></p>
-                                                </div>
-                                                <div class="ms-auto d-md-flex">
-                                                    <a href="javascript:void(0)" class="text-muted me-2" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Edit" aria-label="Edit"><span
-                                                            class="fe fe-edit"></span></a>
-                                                    <a href="javascript:void(0)" class="text-muted"><span
-                                                            class="fe fe-trash-2"></span></a>
-                                                </div>
-                                            </li>
-                                            <li class="d-sm-flex">
-                                                <div>
-                                                    <i class="task-icon bg-warning"></i>
-                                                    <h6 class="fw-semibold">Task Overdue<span
-                                                            class="text-muted fs-11 mx-2 fw-normal">14 June 2021</span>
-                                                    </h6>
-                                                    <p class="text-muted mb-0 fs-12">Petey Cruiser finished task <a
-                                                            href="javascript:void(0)" class="fw-semibold"> Integrated management</a></p>
-                                                </div>
-                                                <div class="ms-auto d-md-flex">
-                                                    <a href="javascript:void(0)" class="text-muted me-2" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Edit" aria-label="Edit"><span
-                                                            class="fe fe-edit"></span></a>
-                                                    <a href="javascript:void(0)" class="text-muted"><span
-                                                            class="fe fe-trash-2"></span></a>
-                                                </div>
-                                            </li>
-                                            <li class="d-sm-flex">
-                                                <div>
-                                                    <i class="task-icon bg-danger"></i>
-                                                    <h6 class="fw-semibold">Task Overdue<span
-                                                            class="text-muted fs-11 mx-2 fw-normal">29 June 2021</span>
-                                                    </h6>
-                                                    <p class="text-muted mb-0 fs-12">Petey Cruiser finished task <a
-                                                            href="javascript:void(0)" class="fw-semibold"> Integrated management</a></p>
-                                                </div>
-                                                <div class="ms-auto d-md-flex">
-                                                    <a href="javascript:void(0)" class="text-muted me-2" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Edit" aria-label="Edit"><span
-                                                            class="fe fe-edit"></span></a>
-                                                    <a href="javascript:void(0)" class="text-muted"><span
-                                                            class="fe fe-trash-2"></span></a>
-                                                </div>
-                                            </li>
-                                            <li class="d-sm-flex">
-                                                <div>
-                                                    <i class="task-icon bg-info"></i>
-                                                    <h6 class="fw-semibold">Task Finished<span
-                                                            class="text-muted fs-11 mx-2 fw-normal">09 July 2021</span>
-                                                    </h6>
-                                                    <p class="text-muted fs-12">Adam Berry finished task on<a href="javascript:void(0)"
-                                                            class="fw-semibold"> Project Management</a></p>
-                                                </div>
-
-                                                <div class="ms-auto d-md-flex">
-                                                    <a href="javascript:void(0)" class="text-muted me-2" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Edit" aria-label="Edit"><span
-                                                            class="fe fe-edit"></span></a>
-                                                    <a href="javascript:void(0)" class="text-muted"><span
-                                                            class="fe fe-trash-2"></span></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            <div class="col-xl-12 col-lg-6 col-md-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title fw-semibold">Browser Usage</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="browser-stats">
-                                            <div class="row mb-4">
-                                                <div class="col-sm-2 col-lg-3 col-xl-3 col-xxl-2 mb-sm-0 mb-3">
-                                                    <img src="assets/images/browsers/chrome.svg" class="img-fluid"
-                                                        alt="img">
-                                                </div>
-                                                <div class="col-sm-10 col-lg-9 col-xl-9 col-xxl-10 ps-sm-0">
-                                                    <div class="d-flex align-items-end justify-content-between mb-1">
-                                                        <h6 class="mb-1">Chrome</h6>
-                                                        <h6 class="fw-semibold mb-1">35,502 <span
-                                                                class="text-success fs-11">(<i
-                                                                    class="fe fe-arrow-up"></i>12.75%)</span></h6>
-                                                    </div>
-                                                    <div class="progress h-2 mb-3">
-                                                        <div class="progress-bar bg-primary" style="width: 70%;"
-                                                            role="progressbar"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col-sm-2 col-lg-3 col-xl-3 col-xxl-2 mb-sm-0 mb-3">
-                                                    <img src="assets/images/browsers/opera.svg" class="img-fluid"
-                                                        alt="img">
-                                                </div>
-                                                <div class="col-sm-10 col-lg-9 col-xl-9 col-xxl-10 ps-sm-0">
-                                                    <div class="d-flex align-items-end justify-content-between mb-1">
-                                                        <h6 class="mb-1">Opera</h6>
-                                                        <h6 class="fw-semibold mb-1">12,563 <span
-                                                                class="text-danger fs-11">(<i
-                                                                    class="fe fe-arrow-down"></i>15.12%)</span></h6>
-                                                    </div>
-                                                    <div class="progress h-2 mb-3">
-                                                        <div class="progress-bar bg-secondary" style="width: 40%;"
-                                                            role="progressbar"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col-sm-2 col-lg-3 col-xl-3 col-xxl-2 mb-sm-0 mb-3">
-                                                    <img src="assets/images/browsers/ie.svg" class="img-fluid"
-                                                        alt="img">
-                                                </div>
-                                                <div class="col-sm-10 col-lg-9 col-xl-9 col-xxl-10 ps-sm-0">
-                                                    <div class="d-flex align-items-end justify-content-between mb-1">
-                                                        <h6 class="mb-1">IE</h6>
-                                                        <h6 class="fw-semibold mb-1">25,364 <span
-                                                                class="text-success fs-11">(<i
-                                                                    class="fe fe-arrow-down"></i>24.37%)</span></h6>
-                                                    </div>
-                                                    <div class="progress h-2 mb-3">
-                                                        <div class="progress-bar bg-success" style="width: 50%;"
-                                                            role="progressbar"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col-sm-2 col-lg-3 col-xl-3 col-xxl-2 mb-sm-0 mb-3">
-                                                    <img src="assets/images/browsers/firefox.svg" class="img-fluid"
-                                                        alt="img">
-                                                </div>
-                                                <div class="col-sm-10 col-lg-9 col-xl-9 col-xxl-10 ps-sm-0">
-                                                    <div class="d-flex align-items-end justify-content-between mb-1">
-                                                        <h6 class="mb-1">Firefox</h6>
-                                                        <h6 class="fw-semibold mb-1">14,635 <span
-                                                                class="text-success fs-11">(<i
-                                                                    class="fe fe-arrow-down"></i>15.63%)</span></h6>
-                                                    </div>
-                                                    <div class="progress h-2 mb-3">
-                                                        <div class="progress-bar bg-danger" style="width: 50%;"
-                                                            role="progressbar"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col-sm-2 col-lg-3 col-xl-3 col-xxl-2 mb-sm-0 mb-3">
-                                                    <img src="assets/images/browsers/edge.svg" class="img-fluid"
-                                                        alt="img">
-                                                </div>
-                                                <div class="col-sm-10 col-lg-9 col-xl-9 col-xxl-10 ps-sm-0">
-                                                    <div class="d-flex align-items-end justify-content-between mb-1">
-                                                        <h6 class="mb-1">Edge</h6>
-                                                        <h6 class="fw-semibold mb-1">15,453 <span
-                                                                class="text-danger fs-11">(<i
-                                                                    class="fe fe-arrow-down"></i>23.70%)</span></h6>
-                                                    </div>
-                                                    <div class="progress h-2 mb-3">
-                                                        <div class="progress-bar bg-warning" style="width: 10%;"
-                                                            role="progressbar"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-4">
-                                                <div class="col-sm-2 col-lg-3 col-xl-3 col-xxl-2 mb-sm-0 mb-3">
-                                                    <img src="assets/images/browsers/safari.svg" class="img-fluid"
-                                                        alt="img">
-                                                </div>
-                                                <div class="col-sm-10 col-lg-9 col-xl-9 col-xxl-10 ps-sm-0">
-                                                    <div class="d-flex align-items-end justify-content-between mb-1">
-                                                        <h6 class="mb-1">Safari</h6>
-                                                        <h6 class="fw-semibold mb-1">10,054 <span
-                                                                class="text-success fs-11">(<i
-                                                                    class="fe fe-arrow-up"></i>11.04%)</span></h6>
-                                                    </div>
-                                                    <div class="progress h-2 mb-3">
-                                                        <div class="progress-bar bg-info" style="width: 40%;"
-                                                            role="progressbar"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-2 col-lg-3 col-xl-3 col-xxl-2 mb-sm-0 mb-3">
-                                                    <img src="assets/images/browsers/netscape.svg" class="img-fluid"
-                                                        alt="img">
-                                                </div>
-                                                <div class="col-sm-10 col-lg-9 col-xl-9 col-xxl-10 ps-sm-0">
-                                                    <div class="d-flex align-items-end justify-content-between mb-1">
-                                                        <h6 class="mb-1">Netscape</h6>
-                                                        <h6 class="fw-semibold mb-1">35,502 <span
-                                                                class="text-success fs-11">(<i
-                                                                    class="fe fe-arrow-up"></i>12.75%)</span></h6>
-                                                    </div>
-                                                    <div class="progress h-2 mb-3">
-                                                        <div class="progress-bar bg-green" style="width: 30%;"
-                                                            role="progressbar"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ROW-3 END -->
-
-                        <!-- ROW-4 -->
-                        <div class="row">
-                            <div class="col-12 col-sm-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3 class="card-title mb-0">Product Sales</h3>
-                                    </div>
-                                    <div class="card-body pt-4">
-                                        <div class="grid-margin">
-                                            <div class="">
-                                                <div class="panel panel-primary">
-                                                    <div class="tab-menu-heading border-0 p-0">
-                                                        <div class="tabs-menu1">
-                                                            <!-- Tabs -->
-                                                            <ul class="nav panel-tabs product-sale">
-                                                                <li><a href="#tab5" class="active"
-                                                                        data-bs-toggle="tab">All products</a></li>
-                                                                <li><a href="#tab6" data-bs-toggle="tab"
-                                                                        class="text-dark">Shipped</a></li>
-                                                                <li><a href="#tab7" data-bs-toggle="tab"
-                                                                        class="text-dark">Pending</a></li>
-                                                                <li><a href="#tab8" data-bs-toggle="tab"
-                                                                        class="text-dark">Cancelled</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="panel-body tabs-menu-body border-0 pt-0">
-                                                        <div class="tab-content">
-                                                            <div class="tab-pane active" id="tab5">
-                                                                <div class="table-responsive">
-                                                                    <table id="data-table"
-                                                                        class="table table-bordered text-nowrap mb-0">
-                                                                        <thead class="border-top">
-                                                                            <tr>
-                                                                                <th class="bg-transparent border-bottom-0"
-                                                                                    style="width: 5%;">Tracking Id</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Product</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Customer</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Date</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Amount</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Payment Mode</th>
-                                                                                <th class="bg-transparent border-bottom-0"
-                                                                                    style="width: 10%;">Status</th>
-                                                                                <th class="bg-transparent border-bottom-0"
-                                                                                    style="width: 5%;">Action</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #98765490</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/10.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Headsets</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cherry Blossom</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">30 Aug
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$6.721.5</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Online Payment</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #76348798</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/12.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Flower Pot</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Simon Sais</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">15 Nov
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$35,7863</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Online Payment</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">Cancelled</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #23986456</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/4.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Pen Drive</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Manny Jah</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">27 Jan
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$5,89,6437</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cash on Delivery</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-warning-transparent rounded-pill text-warning p-2 px-3">Pending</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #87456325</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/8.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                New Bowl</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Florinda Carasco</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">19 Sep
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$17.98</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Online Payment</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #65783926</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/6.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Leather Watch</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Ivan Notheridiya</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">06 Oct
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$8.654.4</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cash on Delivery</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">Cancelled</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #34654895</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/1.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Digital Camera</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Willie Findit</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">10 Jul
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$8.654.4</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cash on Delivery</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-warning-transparent rounded-pill text-warning p-2 px-3">Pending</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #98765345</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/11.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Earphones</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Addie Minstra</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">25 Jun
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$7,34,9768</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Online Payment</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #67546577</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/2.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Shoes</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Laura Biding</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">22 Feb
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$7.76.654</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cash on Delivery</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-warning-transparent rounded-pill text-warning p-2 px-3">Pending</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                            <div class="tab-pane" id="tab6">
-                                                                <div class="table-responsive">
-                                                                    <table
-                                                                        class="table table-bordered text-nowrap mb-0">
-                                                                        <thead class="border-top">
-                                                                            <tr>
-                                                                                <th class="bg-transparent border-bottom-0"
-                                                                                    style="width: 5%;">Tracking Id</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Product</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Customer</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Date</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Amount</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Payment Mode</th>
-                                                                                <th class="bg-transparent border-bottom-0"
-                                                                                    style="width: 10%;">Status</th>
-                                                                                <th class="bg-transparent border-bottom-0"
-                                                                                    style="width: 5%;">Action</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #98765490</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/10.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Headsets</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cherry Blossom</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">30 Aug
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$6.721.5</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Online Payment</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #76348798</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/12.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Flower Pot</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Simon Sais</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">15 Nov
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$35,7863</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Online Payment</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #23986456</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/4.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Pen Drive</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Manny Jah</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">27 Jan
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$5,89,6437</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cash on Delivery</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #87456325</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/8.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                New Bowl</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Florinda Carasco</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">19 Sep
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$17.98</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Online Payment</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #65783926</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/6.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Leather Watch</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Ivan Notheridiya</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">06 Oct
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$8.654.4</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cash on Delivery</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #34654895</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/1.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Digital Camera</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Willie Findit</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">10 Jul
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$8.654.4</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cash on Delivery</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #98765345</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/11.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Earphones</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Addie Minstra</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">25 Jun
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$7,34,9768</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Online Payment</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #67546577</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/2.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Shoes</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Laura Biding</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">22 Feb
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$7.76.654</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cash on Delivery</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-success-transparent rounded-pill text-success p-2 px-3">Shipped</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                            <div class="tab-pane" id="tab7">
-                                                                <div class="table-responsive">
-                                                                    <table
-                                                                        class="table table-bordered text-nowrap mb-0">
-                                                                        <thead class="border-top">
-                                                                            <tr>
-                                                                                <th class="bg-transparent border-bottom-0"
-                                                                                    style="width: 5%;">Tracking Id</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Product</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Customer</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Date</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Amount</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Payment Mode</th>
-                                                                                <th class="bg-transparent border-bottom-0"
-                                                                                    style="width: 10%;">Status</th>
-                                                                                <th class="bg-transparent border-bottom-0"
-                                                                                    style="width: 5%;">Action</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #98765490</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/10.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Headsets</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cherry Blossom</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">30 Aug
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$6.721.5</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Online Payment</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-warning-transparent rounded-pill text-warning p-2 px-3">Pending</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #23986456</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/4.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Pen Drive</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Manny Jah</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">27 Jan
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$5,89,6437</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cash on Delivery</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-warning-transparent rounded-pill text-warning p-2 px-3">Pending</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #87456325</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/8.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                New Bowl</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Florinda Carasco</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">19 Sep
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$17.98</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Online Payment</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-warning-transparent rounded-pill text-warning p-2 px-3">Pending</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #65783926</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/6.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Leather Watch</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Ivan Notheridiya</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">06 Oct
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$8.654.4</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cash on Delivery</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-warning-transparent rounded-pill text-warning p-2 px-3">Pending</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #34654895</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/1.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Digital Camera</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Willie Findit</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">10 Jul
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$8.654.4</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cash on Delivery</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-warning-transparent rounded-pill text-warning p-2 px-3">Pending</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #98765345</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/11.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Earphones</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Addie Minstra</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">25 Jun
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$7,34,9768</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Online Payment</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-warning-transparent rounded-pill text-warning p-2 px-3">Pending</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #67546577</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/2.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Shoes</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Laura Biding</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">22 Feb
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$7.76.654</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cash on Delivery</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-warning-transparent rounded-pill text-warning p-2 px-3">Pending</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                            <div class="tab-pane" id="tab8">
-                                                                <div class="table-responsive">
-                                                                    <table
-                                                                        class="table table-bordered text-nowrap mb-0">
-                                                                        <thead class="border-top">
-                                                                            <tr>
-                                                                                <th class="bg-transparent border-bottom-0"
-                                                                                    style="width: 5%;">Tracking Id</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Product</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Customer</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Date</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Amount</th>
-                                                                                <th
-                                                                                    class="bg-transparent border-bottom-0">
-                                                                                    Payment Mode</th>
-                                                                                <th class="bg-transparent border-bottom-0"
-                                                                                    style="width: 10%;">Status</th>
-                                                                                <th class="bg-transparent border-bottom-0"
-                                                                                    style="width: 5%;">Action</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #98765490</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/10.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Headsets</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cherry Blossom</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">30 Aug
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$6.721.5</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Online Payment</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">Cancelled</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #76348798</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/12.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Flower Pot</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Simon Sais</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">15 Nov
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$35,7863</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Online Payment</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">Cancelled</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #23986456</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/4.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Pen Drive</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Manny Jah</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">27 Jan
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$5,89,6437</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cash on Delivery</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">Cancelled</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #87456325</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/8.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                New Bowl</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Florinda Carasco</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">19 Sep
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$17.98</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Online Payment</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">Cancelled</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #65783926</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/6.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Leather Watch</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Ivan Notheridiya</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">06 Oct
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$8.654.4</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cash on Delivery</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">Cancelled</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr class="border-bottom">
-                                                                                <td class="text-center">
-                                                                                    <div class="mt-0 mt-sm-2 d-block">
-                                                                                        <h6
-                                                                                            class="mb-0 fs-14 fw-semibold">
-                                                                                            #34654895</h6>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <span class="avatar bradius"
-                                                                                            style="background-image: url(assets/images/orders/1.jpg)"></span>
-                                                                                        <div
-                                                                                            class="ms-3 mt-0 mt-sm-2 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Digital Camera</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Willie Findit</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td><span class="mt-sm-2 d-block">10 Jul
-                                                                                        2021</span></td>
-                                                                                <td><span
-                                                                                        class="fw-semibold mt-sm-2 d-block">$8.654.4</span>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="d-flex">
-                                                                                        <div
-                                                                                            class="mt-0 mt-sm-3 d-block">
-                                                                                            <h6
-                                                                                                class="mb-0 fs-14 fw-semibold">
-                                                                                                Cash on Delivery</h6>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="mt-sm-1 d-block">
-                                                                                        <span
-                                                                                            class="badge bg-danger-transparent rounded-pill text-danger p-2 px-3">Cancelled</span>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <div class="g-2">
-                                                                                        <a class="btn text-primary btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
-                                                                                        <a class="btn text-danger btn-sm"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
-                                                                                    </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ROW-4 END -->
+                        <!-- End of .intro-slide3 -->
                     </div>
-                    <!-- CONTAINER END -->
+                    <div class="swiper-pagination"></div>
+                    <button class="swiper-button-next"></button>
+                    <button class="swiper-button-prev"></button>
                 </div>
-            </div>
-            <!--app-content close-->
+                <!-- End of .swiper-container -->
+            </section>
+            <!-- End of .intro-section -->
 
-        </div>
-
-        <!-- Sidebar-right -->
-        <div class="sidebar sidebar-right sidebar-animate">
-            <div class="panel panel-primary card mb-0 shadow-none border-0">
-                <div class="tab-menu-heading border-0 d-flex p-3">
-                    <div class="card-title mb-0"><i class="fe fe-bell me-2"></i><span
-                            class=" pulse"></span>Notifications</div>
-                    <div class="card-options ms-auto">
-                        <a href="javascript:void(0);" class="sidebar-icon text-end float-end me-3 mb-1"
-                            data-bs-toggle="sidebar-right" data-target=".sidebar-right"><i
-                                class="fe fe-x text-white"></i></a>
-                    </div>
-                </div>
-                <div class="panel-body tabs-menu-body latest-tasks p-0 border-0">
-                    <div class="tabs-menu border-bottom">
-                        <!-- Tabs -->
-                        <ul class="nav panel-tabs">
-                            <li class=""><a href="#sidebar-side1" class="active" data-bs-toggle="tab"><i
-                                        class="fe fe-settings me-1"></i>Feeds</a></li>
-                            <li><a href="#sidebar-side2" data-bs-toggle="tab"><i class="fe fe-message-circle me-1"></i> Chat</a></li>
-                            <li><a href="#sidebar-side3" data-bs-toggle="tab"><i class="fe fe-anchor me-1"></i>Timeline</a></li>
-                        </ul>
-                    </div>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="sidebar-side1">
-                            <div class="p-3 fw-semibold ps-5">Feeds</div>
-                            <div class="card-body pt-2">
-                                <div class="browser-stats">
-                                    <div class="row mb-4">
-                                        <div class="col-sm-2 mb-sm-0 mb-3">
-                                            <span class="feeds avatar-circle brround bg-primary-transparent"><i
-                                                    class="fe fe-user text-primary"></i></span>
-                                        </div>
-                                        <div class="col-sm-10 ps-sm-0">
-                                            <div class="d-flex align-items-end justify-content-between ms-2">
-                                                <h6 class="">New user registered</h6>
-                                                <div>
-                                                    <a href="javascript:void(0)"><i class="fe fe-settings me-1"></i></a>
-                                                    <a href="javascript:void(0)"><i class="fe fe-x"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-sm-2 mb-sm-0 mb-3">
-                                            <span
-                                                class="feeds avatar-circle avatar-circle-secondary brround bg-secondary-transparent"><i
-                                                    class="fe fe-shopping-cart text-secondary"></i></span>
-                                        </div>
-                                        <div class="col-sm-10 ps-sm-0">
-                                            <div class="d-flex align-items-end justify-content-between ms-2">
-                                                <h6 class="">New order delivered</h6>
-                                                <div>
-                                                    <a href="javascript:void(0)"><i class="fe fe-settings me-1"></i></a>
-                                                    <a href="javascript:void(0)"><i class="fe fe-x"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-sm-2 mb-sm-0 mb-3">
-                                            <span
-                                                class="feeds avatar-circle avatar-circle-danger brround bg-danger-transparent"><i
-                                                    class="fe fe-bell text-danger"></i></span>
-                                        </div>
-                                        <div class="col-sm-10 ps-sm-0">
-                                            <div class="d-flex align-items-end justify-content-between ms-2">
-                                                <h6 class="">You have pending tasks</h6>
-                                                <div>
-                                                    <a href="javascript:void(0)"><i class="fe fe-settings me-1"></i></a>
-                                                    <a href="javascript:void(0)"><i class="fe fe-x"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-sm-2 mb-sm-0 mb-3">
-                                            <span
-                                                class="feeds avatar-circle avatar-circle-warning brround bg-warning-transparent"><i
-                                                    class="fe fe-gitlab text-warning"></i></span>
-                                        </div>
-                                        <div class="col-sm-10 ps-sm-0">
-                                            <div class="d-flex align-items-end justify-content-between ms-2">
-                                                <h6 class="">New version arrived</h6>
-                                                <div>
-                                                    <a href="javascript:void(0)"><i class="fe fe-settings me-1"></i></a>
-                                                    <a href="javascript:void(0)"><i class="fe fe-x"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-sm-2 mb-sm-0 mb-3">
-                                            <span
-                                                class="feeds avatar-circle avatar-circle-pink brround bg-pink-transparent"><i
-                                                    class="fe fe-database text-pink"></i></span>
-                                        </div>
-                                        <div class="col-sm-10 ps-sm-0">
-                                            <div class="d-flex align-items-end justify-content-between ms-2">
-                                                <h6 class="">Server #1 overloaded</h6>
-                                                <div>
-                                                    <a href="javascript:void(0)"><i class="fe fe-settings me-1"></i></a>
-                                                    <a href="javascript:void(0)"><i class="fe fe-x"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-2 mb-sm-0 mb-3">
-                                            <span
-                                                class="feeds avatar-circle avatar-circle-info brround bg-info-transparent"><i
-                                                    class="fe fe-check-circle text-info"></i></span>
-                                        </div>
-                                        <div class="col-sm-10 ps-sm-0">
-                                            <div class="d-flex align-items-end justify-content-between ms-2">
-                                                <h6 class="">New project launched</h6>
-                                                <div>
-                                                    <a href="javascript:void(0)"><i class="fe fe-settings me-1"></i></a>
-                                                    <a href="javascript:void(0)"><i class="fe fe-x"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-3 fw-semibold ps-5">Settings</div>
-                            <div class="card-body pt-2">
-                                <div class="browser-stats">
-                                    <div class="row mb-4">
-                                        <div class="col-sm-2 mb-sm-0 mb-3">
-                                            <span class="feeds avatar-circle brround bg-primary-transparent"><i
-                                                    class="fe fe-settings text-primary"></i></span>
-                                        </div>
-                                        <div class="col-sm-10 ps-sm-0">
-                                            <div class="d-flex align-items-end justify-content-between ms-2">
-                                                <h6 class="">General Settings</h6>
-                                                <div>
-                                                    <a href="javascript:void(0)"><i class="fe fe-settings me-1"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-sm-2 mb-sm-0 mb-3">
-                                            <span
-                                                class="feeds avatar-circle avatar-circle-secondary brround bg-secondary-transparent"><i
-                                                    class="fe fe-map-pin text-secondary"></i></span>
-                                        </div>
-                                        <div class="col-sm-10 ps-sm-0">
-                                            <div class="d-flex align-items-end justify-content-between ms-2">
-                                                <h6 class="">Map Settings</h6>
-                                                <div>
-                                                    <a href="javascript:void(0)"><i class="fe fe-settings me-1"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-sm-2 mb-sm-0 mb-3">
-                                            <span
-                                                class="feeds avatar-circle avatar-circle-danger brround bg-danger-transparent"><i
-                                                    class="fe fe-headphones text-danger"></i></span>
-                                        </div>
-                                        <div class="col-sm-10 ps-sm-0">
-                                            <div class="d-flex align-items-end justify-content-between ms-2">
-                                                <h6 class="">Support Settings</h6>
-                                                <div>
-                                                    <a href="javascript:void(0)"><i class="fe fe-settings me-1"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-sm-2 mb-sm-0 mb-3">
-                                            <span
-                                                class="feeds avatar-circle avatar-circle-warning brround bg-warning-transparent"><i
-                                                    class="fe fe-credit-card text-warning"></i></span>
-                                        </div>
-                                        <div class="col-sm-10 ps-sm-0">
-                                            <div class="d-flex align-items-end justify-content-between ms-2">
-                                                <h6 class="">Payment Settings</h6>
-                                                <div>
-                                                    <a href="javascript:void(0)"><i class="fe fe-settings me-1"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-4">
-                                        <div class="col-sm-2 mb-sm-0 mb-3">
-                                            <span
-                                                class="feeds avatar-circle avatar-circle-pink brround bg-pink-transparent"><i
-                                                    class="fe fe-bell text-pink"></i></span>
-                                        </div>
-                                        <div class="col-sm-10 ps-sm-0">
-                                            <div class="d-flex align-items-end justify-content-between ms-2">
-                                                <h6 class="">Notification Settings</h6>
-                                                <div>
-                                                    <a href="javascript:void(0)"><i class="fe fe-settings me-1"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="sidebar-side2">
-                            <div class="list-group list-group-flush">
-                                <div class="pt-3 fw-semibold ps-5">Today</div>
-                                <div class="list-group-item d-flex align-items-center">
-                                    <div class="me-2">
-                                        <span class="avatar avatar-md brround cover-image"
-                                            data-bs-image-src="assets/images/users/2.jpg"></span>
-                                    </div>
-                                    <div class="">
-                                        <a href="chat.html">
-                                            <div class="fw-semibold text-dark" data-bs-toggle="modal"
-                                                data-target="#chatmodel">Addie Minstra</div>
-                                            <p class="mb-0 fs-12 text-muted"> Hey! there I' am available.... </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="list-group-item d-flex align-items-center">
-                                    <div class="me-2">
-                                        <span class="avatar avatar-md brround cover-image"
-                                            data-bs-image-src="assets/images/users/11.jpg"><span
-                                                class="avatar-status bg-success"></span></span>
-                                    </div>
-                                    <div class="">
-                                        <a href="chat.html">
-                                            <div class="fw-semibold text-dark" data-bs-toggle="modal"
-                                                data-target="#chatmodel">Rose Bush</div>
-                                            <p class="mb-0 fs-12 text-muted"> Okay...I will be waiting for you </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="list-group-item d-flex align-items-center">
-                                    <div class="me-2">
-                                        <span class="avatar avatar-md brround cover-image"
-                                            data-bs-image-src="assets/images/users/10.jpg"></span>
-                                    </div>
-                                    <div class="">
-                                        <a href="chat.html">
-                                            <div class="fw-semibold text-dark" data-bs-toggle="modal"
-                                                data-target="#chatmodel">Claude Strophobia</div>
-                                            <p class="mb-0 fs-12 text-muted"> Hi we can explain our new project......
-                                            </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="list-group-item d-flex align-items-center">
-                                    <div class="me-2">
-                                        <span class="avatar avatar-md brround cover-image"
-                                            data-bs-image-src="assets/images/users/13.jpg"></span>
-                                    </div>
-                                    <div class="">
-                                        <a href="chat.html">
-                                            <div class="fw-semibold text-dark" data-bs-toggle="modal"
-                                                data-target="#chatmodel">Eileen Dover</div>
-                                            <p class="mb-0 fs-12 text-muted"> New product Launching... </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="list-group-item d-flex align-items-center">
-                                    <div class="me-2">
-                                        <span class="avatar avatar-md brround cover-image"
-                                            data-bs-image-src="assets/images/users/12.jpg"><span
-                                                class="avatar-status bg-success"></span></span>
-                                    </div>
-                                    <div class="">
-                                        <a href="chat.html">
-                                            <div class="fw-semibold text-dark" data-bs-toggle="modal"
-                                                data-target="#chatmodel">Willie Findit</div>
-                                            <p class="mb-0 fs-12 text-muted"> Okay...I will be waiting for you </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="list-group-item d-flex align-items-center">
-                                    <div class="me-2">
-                                        <span class="avatar avatar-md brround cover-image"
-                                            data-bs-image-src="assets/images/users/15.jpg"></span>
-                                    </div>
-                                    <div class="">
-                                        <a href="chat.html">
-                                            <div class="fw-semibold text-dark" data-bs-toggle="modal"
-                                                data-target="#chatmodel">Manny Jah</div>
-                                            <p class="mb-0 fs-12 text-muted"> Hi we can explain our new project......
-                                            </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="list-group-item d-flex align-items-center">
-                                    <div class="me-2">
-                                        <span class="avatar avatar-md brround cover-image"
-                                            data-bs-image-src="assets/images/users/4.jpg"></span>
-                                    </div>
-                                    <div class="">
-                                        <a href="chat.html">
-                                            <div class="fw-semibold text-dark" data-bs-toggle="modal"
-                                                data-target="#chatmodel">Cherry Blossom</div>
-                                            <p class="mb-0 fs-12 text-muted"> Hey! there I' am available....</p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="pt-3 fw-semibold ps-5">Yesterday</div>
-                                <div class="list-group-item d-flex align-items-center">
-                                    <div class="me-2">
-                                        <span class="avatar avatar-md brround cover-image"
-                                            data-bs-image-src="assets/images/users/7.jpg"><span
-                                                class="avatar-status bg-success"></span></span>
-                                    </div>
-                                    <div class="">
-                                        <a href="chat.html">
-                                            <div class="fw-semibold text-dark" data-bs-toggle="modal"
-                                                data-target="#chatmodel">Simon Sais</div>
-                                            <p class="mb-0 fs-12 text-muted">Schedule Realease...... </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="list-group-item d-flex align-items-center">
-                                    <div class="me-2">
-                                        <span class="avatar avatar-md brround cover-image"
-                                            data-bs-image-src="assets/images/users/9.jpg"></span>
-                                    </div>
-                                    <div class="">
-                                        <a href="chat.html">
-                                            <div class="fw-semibold text-dark" data-bs-toggle="modal"
-                                                data-target="#chatmodel">Laura Biding</div>
-                                            <p class="mb-0 fs-12 text-muted"> Hi we can explain our new project......
-                                            </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="list-group-item d-flex align-items-center">
-                                    <div class="me-2">
-                                        <span class="avatar avatar-md brround cover-image"
-                                            data-bs-image-src="assets/images/users/2.jpg"><span
-                                                class="avatar-status bg-success"></span></span>
-                                    </div>
-                                    <div class="">
-                                        <a href="chat.html">
-                                            <div class="fw-semibold text-dark" data-bs-toggle="modal"
-                                                data-target="#chatmodel">Addie Minstra</div>
-                                            <p class="mb-0 fs-12 text-muted">Contact me for details....</p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="list-group-item d-flex align-items-center">
-                                    <div class="me-2">
-                                        <span class="avatar avatar-md brround cover-image"
-                                            data-bs-image-src="assets/images/users/9.jpg"></span>
-                                    </div>
-                                    <div class="">
-                                        <a href="chat.html">
-                                            <div class="fw-semibold text-dark" data-bs-toggle="modal"
-                                                data-target="#chatmodel">Ivan Notheridiya</div>
-                                            <p class="mb-0 fs-12 text-muted"> Hi we can explain our new project......
-                                            </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="list-group-item d-flex align-items-center">
-                                    <div class="me-2">
-                                        <span class="avatar avatar-md brround cover-image"
-                                            data-bs-image-src="assets/images/users/14.jpg"></span>
-                                    </div>
-                                    <div class="">
-                                        <a href="chat.html">
-                                            <div class="fw-semibold text-dark" data-bs-toggle="modal"
-                                                data-target="#chatmodel">Dulcie Veeta</div>
-                                            <p class="mb-0 fs-12 text-muted"> Okay...I will be waiting for you </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="list-group-item d-flex align-items-center">
-                                    <div class="me-2">
-                                        <span class="avatar avatar-md brround cover-image"
-                                            data-bs-image-src="assets/images/users/11.jpg"></span>
-                                    </div>
-                                    <div class="">
-                                        <a href="chat.html">
-                                            <div class="fw-semibold text-dark" data-bs-toggle="modal"
-                                                data-target="#chatmodel">Florinda Carasco</div>
-                                            <p class="mb-0 fs-12 text-muted">New product Launching...</p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="list-group-item d-flex align-items-center">
-                                    <div class="me-2">
-                                        <span class="avatar avatar-md brround cover-image"
-                                            data-bs-image-src="assets/images/users/4.jpg"><span
-                                                class="avatar-status bg-success"></span></span>
-                                    </div>
-                                    <div class="">
-                                        <a href="chat.html">
-                                            <div class="fw-semibold text-dark" data-bs-toggle="modal"
-                                                data-target="#chatmodel">Cherry Blossom</div>
-                                            <p class="mb-0 fs-12 text-muted">cherryblossom@gmail.com</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="sidebar-side3">
-                            <ul class="task-list timeline-task">
-                                <li class="d-sm-flex mt-4">
-                                    <div>
-                                        <i class="task-icon1"></i>
-                                        <h6 class="fw-semibold">Task Finished<span
-                                                class="text-muted fs-11 mx-2 fw-normal">09 July 2021</span></h6>
-                                        <p class="text-muted fs-12">Adam Berry finished task on<a href="javascript:void(0)"
-                                                class="fw-semibold"> Project Management</a></p>
-                                    </div>
-                                    <div class="ms-auto d-md-flex me-3">
-                                        <a href="javascript:void(0)" class="text-muted me-2"><span class="fe fe-edit"></span></a>
-                                        <a href="javascript:void(0)" class="text-muted"><span class="fe fe-trash-2"></span></a>
-                                    </div>
-                                </li>
-                                <li class="d-sm-flex">
-                                    <div>
-                                        <i class="task-icon1"></i>
-                                        <h6 class="fw-semibold">New Comment<span
-                                                class="text-muted fs-11 mx-2 fw-normal">05 July 2021</span></h6>
-                                        <p class="text-muted fs-12">Victoria commented on Project <a href="javascript:void(0)"
-                                                class="fw-semibold"> AngularJS Template</a></p>
-                                    </div>
-                                    <div class="ms-auto d-md-flex me-3">
-                                        <a href="javascript:void(0)" class="text-muted me-2"><span class="fe fe-edit"></span></a>
-                                        <a href="javascript:void(0)" class="text-muted"><span class="fe fe-trash-2"></span></a>
-                                    </div>
-                                </li>
-                                <li class="d-sm-flex">
-                                    <div>
-                                        <i class="task-icon1"></i>
-                                        <h6 class="fw-semibold">New Comment<span
-                                                class="text-muted fs-11 mx-2 fw-normal">25 June 2021</span></h6>
-                                        <p class="text-muted fs-12">Victoria commented on Project <a href="javascript:void(0)"
-                                                class="fw-semibold"> AngularJS Template</a></p>
-                                    </div>
-                                    <div class="ms-auto d-md-flex me-3">
-                                        <a href="javascript:void(0)" class="text-muted me-2"><span class="fe fe-edit"></span></a>
-                                        <a href="javascript:void(0)" class="text-muted"><span class="fe fe-trash-2"></span></a>
-                                    </div>
-                                </li>
-                                <li class="d-sm-flex">
-                                    <div>
-                                        <i class="task-icon1"></i>
-                                        <h6 class="fw-semibold">Task Overdue<span
-                                                class="text-muted fs-11 mx-2 fw-normal">14 June 2021</span></h6>
-                                        <p class="text-muted mb-0 fs-12">Petey Cruiser finished task <a href="javascript:void(0)"
-                                                class="fw-semibold"> Integrated management</a></p>
-                                    </div>
-                                    <div class="ms-auto d-md-flex me-3">
-                                        <a href="javascript:void(0)" class="text-muted me-2"><span class="fe fe-edit"></span></a>
-                                        <a href="javascript:void(0)" class="text-muted"><span class="fe fe-trash-2"></span></a>
-                                    </div>
-                                </li>
-                                <li class="d-sm-flex">
-                                    <div>
-                                        <i class="task-icon1"></i>
-                                        <h6 class="fw-semibold">Task Overdue<span
-                                                class="text-muted fs-11 mx-2 fw-normal">29 June 2021</span></h6>
-                                        <p class="text-muted mb-0 fs-12">Petey Cruiser finished task <a href="javascript:void(0)"
-                                                class="fw-semibold"> Integrated management</a></p>
-                                    </div>
-                                    <div class="ms-auto d-md-flex me-3">
-                                        <a href="javascript:void(0)" class="text-muted me-2"><span class="fe fe-edit"></span></a>
-                                        <a href="javascript:void(0)" class="text-muted"><span class="fe fe-trash-2"></span></a>
-                                    </div>
-                                </li>
-                                <li class="d-sm-flex">
-                                    <div>
-                                        <i class="task-icon1"></i>
-                                        <h6 class="fw-semibold">Task Finished<span
-                                                class="text-muted fs-11 mx-2 fw-normal">09 July 2021</span></h6>
-                                        <p class="text-muted fs-12">Adam Berry finished task on<a href="javascript:void(0)"
-                                                class="fw-semibold"> Project Management</a></p>
-                                    </div>
-                                    <div class="ms-auto d-md-flex me-3">
-                                        <a href="javascript:void(0)" class="text-muted me-2"><span class="fe fe-edit"></span></a>
-                                        <a href="javascript:void(0)" class="text-muted"><span class="fe fe-trash-2"></span></a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/Sidebar-right-->
-
-        <!-- Country-selector modal-->
-        <div class="modal fade" id="country-selector">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content country-select-modal">
-                    <div class="modal-header">
-                        <h6 class="modal-title">Choose Country</h6><button aria-label="Close" class="btn-close"
-                            data-bs-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <ul class="row p-3">
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block active">
-                                    <span class="country-selector"><img alt="" src="assets/images/flags-img/us_flag.jpg"
-                                            class="me-3 language"></span>USA
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="assets/images/flags-img/italy_flag.jpg"
-                                        class="me-3 language"></span>Italy
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="assets/images/flags-img/spain_flag.jpg"
-                                        class="me-3 language"></span>Spain
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="assets/images/flags-img/india_flag.jpg"
-                                        class="me-3 language"></span>India
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="assets/images/flags-img/french_flag.jpg"
-                                        class="me-3 language"></span>French
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="assets/images/flags-img/russia_flag.jpg"
-                                        class="me-3 language"></span>Russia
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="assets/images/flags-img/germany_flag.jpg"
-                                        class="me-3 language"></span>Germany
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="assets/images/flags-img/argentina.jpg"
-                                        class="me-3 language"></span>Argentina
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt="" src="assets/images/flags-img/malaysia.jpg"
-                                        class="me-3 language"></span>Malaysia
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt="" src="assets/images/flags-img/turkey.jpg"
-                                        class="me-3 language"></span>Turkey
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Country-selector modal-->
-
-        <!-- FOOTER -->
-        <footer class="footer">
             <div class="container">
-                <div class="row align-items-center flex-row-reverse">
-                    <div class="col-md-12 col-sm-12 text-center">
-                        Copyright © <script>document.write(new Date().getFullYear())</script> <a href="">THEADEMOLA</a>. All Rights Reserved.
+                <div class="swiper-container appear-animate icon-box-wrapper br-sm mt-6 mb-6" data-swiper-options="{
+                    'slidesPerView': 1,
+                    'loop': false,
+                    'breakpoints': {
+                        '576': {
+                            'slidesPerView': 2
+                        },
+                        '768': {
+                            'slidesPerView': 3
+                        },
+                        '1200': {
+                            'slidesPerView': 4
+                        }
+                    }
+                }">
+                    <div class="swiper-wrapper row cols-md-4 cols-sm-3 cols-1">
+                        <div class="swiper-slide icon-box icon-box-side icon-box-primary">
+                            <span class="icon-box-icon icon-shipping">
+                                <i class="w-icon-truck"></i>
+                            </span>
+                            <div class="icon-box-content">
+                                <h4 class="icon-box-title font-weight-bold mb-1">Shipping & Delivery</h4>
+                                <p class="text-default">Delivery anywhere in the country.</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide icon-box icon-box-side icon-box-primary">
+                            <span class="icon-box-icon icon-payment">
+                                <i class="w-icon-bag"></i>
+                            </span>
+                            <div class="icon-box-content">
+                                <h4 class="icon-box-title font-weight-bold mb-1">Secure Payment</h4>
+                                <p class="text-default">We ensure secure payment always.</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide icon-box icon-box-side icon-box-primary icon-box-money">
+                            <span class="icon-box-icon icon-money">
+                                <i class="w-icon-money"></i>
+                            </span>
+
+                            <div class="icon-box-content">
+                                <h4 class="icon-box-title font-weight-bold mb-1">Quick Payment Confirmation</h4>
+                                <p class="text-default">All payments gets confirmed in seconds.</p>
+                            </div>   
+                        </div>
+
+                        <div class="swiper-slide icon-box icon-box-side icon-box-primary icon-box-chat">
+                            <span class="icon-box-icon icon-chat">
+                                <i class="w-icon-chat"></i>
+                            </span>
+                            <div class="icon-box-content">
+                                <h4 class="icon-box-title font-weight-bold mb-1">Customer Support</h4>
+                                <p class="text-default">Customer support available 24/7.
+
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End of Iocn Box Wrapper -->
+
+                <div class="row deals-wrapper appear-animate mb-8">
+                    <div class="col-lg-9 mb-4">
+                        <div class="single-product h-100 br-sm">
+                            <h4 class="title-sm title-underline font-weight-bolder ls-normal">
+                                Newly Uploaded Products
+                            </h4>
+                            <div class="swiper">
+                                <div class="swiper-container swiper-theme nav-top swiper-nav-lg" data-swiper-options="{
+                                    'spaceBetween': 20,
+                                    'slidesPerView': 1
+                                }">
+
+                                                           <?php
+                            // GET PRODUCTS FROM DATABASE
+                            $sql = $sql = "SELECT * FROM `product_table` ORDER BY `id` ASC";
+
+                            $result = mysqli_query($conn, $sql);
+                            ?>
+                                    <div class="swiper-wrapper row cols-1 gutter-no">
+                                        <?php
+     $sql = "SELECT * FROM  `product_table` ORDER BY id ASC";
+     $result = mysqli_query($conn, $sql);
+     if (mysqli_num_rows($result) > 0) {
+         while ($row = mysqli_fetch_array($result)) {
+     ?>
+                                        <div class="swiper-slide">
+                                            <div class="product product-single row">
+                                                <div class="col-md-6">
+                                                    <div class="product-gallery product-gallery-sticky product-gallery-vertical">
+                                                        <div class="swiper-container product-single-swiper swiper-theme nav-inner">
+                                                            <div class="swiper-wrapper row cols-1 gutter-no">
+                                                                <div class="swiper-slide">
+                                                                    <figure class="product-image">
+                                                                        <img src="../dashboard/productupload/<?php echo $row['productimage']; ?>"
+                                                                            data-zoom-image="../dashboard/productupload/<?php echo $row['productimage']; ?>"
+                                                                            alt="Product Image" width="800"
+                                                                            height="900">
+                                                                    </figure>
+                                                                </div>
+
+                                                                <div class="swiper-slide">
+                                                                    <figure class="product-image">
+                                                                        <img src="../dashboard/productupload/<?php echo $row['productimage']; ?>"
+                                                                            data-zoom-image="../dashboard/productupload/<?php echo $row['productimage']; ?>"
+                                                                            alt="Product Image" width="800"
+                                                                            height="900">
+                                                                    </figure>
+                                                                </div>
+
+                                                                <div class="swiper-slide">
+                                                                    <figure class="product-image">
+                                                                        <img src="../dashboard/productupload/<?php echo $row['productimage']; ?>"
+                                                                            data-zoom-image="../dashboard/productupload/<?php echo $row['productimage']; ?>"
+                                                                            alt="Product Image" width="800"
+                                                                            height="900">
+                                                                    </figure>
+                                                                </div>
+
+                                                                <div class="swiper-slide">
+                                                                    <figure class="product-image">
+                                                                        <img src="../dashboard/productupload/<?php echo $row['productimage']; ?>"
+                                                                            data-zoom-image="../dashboard/productupload/<?php echo $row['productimage']; ?>"
+                                                                            alt="Product Image" width="800"
+                                                                            height="900">
+                                                                    </figure>
+                                                                </div>
+                                                            </div>
+                                                            <button class="swiper-button-next"></button>
+                                                            <button class="swiper-button-prev"></button>
+                                                            <div class="product-label-group">
+                                                                
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="product-thumbs-wrap swiper-container"
+                                                            data-swiper-options="{
+                                                            'direction': 'vertical',
+                                                            'breakpoints': {
+                                                                '0': {
+                                                                    'direction': 'horizontal',
+                                                                    'slidesPerView': 4
+                                                                },
+                                                                '992': {
+                                                                    'direction': 'vertical',
+                                                                    'slidesPerView': 'auto'
+                                                                }
+                                                            }
+                                                        }">
+
+                                                            <div class="product-thumbs swiper-wrapper row cols-lg-1 cols-4 gutter-sm">
+                                                                <div class="product-thumb swiper-slide">
+                                                                    <img src="../dashboard/productupload/<?php echo $row['productimage']; ?>"
+                                                                        alt="Product thumb" width="60" height="68" />
+                                                                </div>
+                                                                <div class="product-thumb swiper-slide">
+                                                                    <img src="../dashboard/productupload/<?php echo $row['productimage']; ?>"
+                                                                        alt="Product thumb" width="60" height="68" />
+                                                                </div>
+                                                                <div class="product-thumb swiper-slide">
+                                                                    <img src="../dashboard/productupload/<?php echo $row['productimage']; ?>"
+                                                                        alt="Product thumb" width="60" height="68" />
+                                                                </div>
+                                                                <div class="product-thumb swiper-slide">
+                                                                    <img src="../dashboard/productupload/<?php echo $row['productimage']; ?>"
+                                                                        alt="Product thumb" width="60" height="68" />
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="product-details scrollable">
+                                                        <h2 class="product-title mb-1"><a
+                                                                href="product.php?uin=<?php echo $row['uin']; ?>"><?php echo $row['productname']; ?></a>
+                                                            </h2>
+                                                            
+
+                                                        <hr class="product-divider">
+
+                                                        <div class="product-price"><ins class="new-price ls-50">
+                                                            &#8358;<?php
+                                                            echo number_format($row['sellingprice'], 2);
+                                                            ?>
+                                                        </ins></div>
+
+
+                                                        <div class="ratings-container">
+                                                            <div class="ratings-full">
+                                                                <span class="ratings" style="width: 80%;"></span>
+                                                                <span class="tooltiptext tooltip-top"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        
+
+                                                        <div class="product-form pt-4">
+                                                            <div class="product-qty-form mb-2 mr-2">
+                                                                <div class="input-group">
+                                                                    <input class="quantity form-control" type="number"
+                                                                        min="1" max="10000000">
+                                                                    <button class="quantity-plus w-icon-plus"></button>
+                                                                    <button
+                                                                        class="quantity-minus w-icon-minus"></button>
+                                                                </div>
+                                                            </div>
+                                                            <button class="btn btn-primary btn-cart">
+                                                                <i class="w-icon-cart"></i>
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="social-links-wrapper mt-1">
+                                                            <div class="social-links">
+                                                                <div class="social-icons social-no-color border-thin">
+                                                                    
+                                                                    <a href="#"
+                                                                        class="social-icon social-twitter w-icon-twitter"></a>
+                                                                    
+                                                                    <a href="#"
+                                                                        class="social-icon social-whatsapp fab fa-whatsapp"></a>
+
+                                                                    <a href="#"
+                                                                        class="social-icon social-youtube fab fa-linkedin-in"></a>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <span class="divider d-xs-show"></span>
+                                                            <div class="product-link-wrapper d-flex">
+                                                                <a href="#"
+                                                                    class="btn-product-icon btn-wishlist w-icon-heart"></a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <?php }} ?>
+
+                                    </div>
+                                    <button class="swiper-button-prev"></button>
+                                    <button class="swiper-button-next"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 mb-4">
+                        <div class="widget widget-products widget-products-bordered h-100">
+                            <div class="widget-body br-sm h-100">
+                                <h4 class="title-sm title-underline font-weight-bolder ls-normal mb-2">
+                                    Top Products
+                                </h4>
+
+                                <div class="swiper">
+                                    <div class="swiper-container swiper-theme nav-top" data-swiper-options="{
+                                        'slidesPerView': 1,
+                                        'spaceBetween': 20,
+                                        'breakpoints': {
+                                            '576': {
+                                                'slidesPerView': 2
+                                            },
+                                            '768': {
+                                                'slidesPerView': 3
+                                            },
+                                            '992': {
+                                                'slidesPerView': 1
+                                            }
+                                        }
+                                    }">
+
+                                        <div class="swiper-wrapper row cols-lg-1 cols-md-3">
+                                            <?php
+     $sql = "SELECT * FROM  `product_table` ORDER BY id ASC";
+     $result = mysqli_query($conn, $sql);
+     if (mysqli_num_rows($result) > 0) {
+         while ($row = mysqli_fetch_array($result)) {
+     ?>
+                                            <div class="swiper-slide product-widget-wrap">
+                                                <div class="product product-widget bb-no">
+                                                    <figure class="product-media">
+                                                        <a href="product.php?uin=<?php echo $row['uin']; ?>">
+                                                            <img src="../dashboard/productupload/<?php echo $row['productimage']; ?>"
+                                                                alt="Product" width="105" height="118" />
+                                                        </a>
+                                                    </figure>
+
+                                                    <div class="product-details">
+                                                        <h4 class="product-name">
+                                                            <a href="product.php?uin<?php echo $row['uin']; ?>"><?php echo $row['productname']; ?></a>
+                                                        </h4>
+
+                                                        <div class="ratings-container">
+                                                            <div class="ratings-full">
+                                                                <span class="ratings" style="width: 60%;"></span>
+                                                                <span class="tooltiptext tooltip-top"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="product-price">
+                                                            <ins class="new-price">
+                                                                &#8358;<?php
+                                                            echo number_format($row['sellingprice'], 2);
+                                                            ?>
+                                                            </ins>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="product product-widget bb-no">
+                                                    <figure class="product-media">
+                                                        <a href="product.php?uin=<?php echo $row['uin']; ?>">
+                                                            <img src="../dashboard/productupload/<?php echo $row['productimage']; ?>"
+                                                                alt="Product" width="105" height="118" />
+                                                        </a>
+                                                    </figure>
+
+                                                    <div class="product-details">
+                                                        <h4 class="product-name">
+                                                            <a href="product.php?uin=<?php echo $row['uin']; ?>"><?php echo $row['productname']; ?></a>
+                                                        </h4>
+
+                                                        <div class="ratings-container">
+                                                            <div class="ratings-full">
+                                                                <span class="ratings" style="width: 60%;"></span>
+                                                                <span class="tooltiptext tooltip-top"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="product-price">
+                                                            <ins class="new-price"> &#8358;<?php
+                                                            echo number_format($row['sellingprice'], 2);?>
+                                                            </ins>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="product product-widget">
+                                                    <figure class="product-media">
+                                                        <a href="product.php?uin=<?php echo $row['uin']; ?>">
+                                                            <img src="../dashboard/productupload/<?php echo $row['productimage']; ?>"
+                                                                alt="Product" width="105" height="118" />
+                                                        </a>
+                                                    </figure>
+
+                                                    <div class="product-details">
+                                                        <h4 class="product-name">
+                                                            <a href="product.php?uin=<?php echo $row['uin']; ?>"><?php echo $row['productname']; ?></a>
+                                                        </h4>
+
+                                                        <div class="ratings-container">
+                                                            <div class="ratings-full">
+                                                                <span class="ratings" style="width: 60%;"></span>
+                                                                <span class="tooltiptext tooltip-top"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="product-price">
+                                                            <ins class="new-price"> &#8358;<?php
+                                                            echo number_format($row['sellingprice'], 2);?></ins>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+
+                                           <?php }} ?>
+
+                                        </div>
+                                        <button class="swiper-button-next"></button>
+                                        <button class="swiper-button-prev"></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Deals Wrapper -->
+            </div>
+
+            <section class="category-section top-category bg-grey pt-10 pb-10 appear-animate">
+                <div class="container pb-2">
+                    <h2 class="title justify-content-center pt-1 ls-normal mb-5">Top Categories Of The Month</h2>
+                    <div class="swiper">
+                        <div class="swiper-container swiper-theme pg-show" data-swiper-options="{
+                            'spaceBetween': 20,
+                            'slidesPerView': 2,
+                            'breakpoints': {
+                                '576': {
+                                    'slidesPerView': 3
+                                },
+                                '768': {
+                                    'slidesPerView': 5
+                                },
+                                '992': {
+                                    'slidesPerView': 6
+                                }
+                            }
+                        }">
+                            <div class="swiper-wrapper row cols-lg-6 cols-md-5 cols-sm-3 cols-2">
+                                <div
+                                    class="swiper-slide category category-classic category-absolute overlay-zoom br-xs">
+                                    <a href="shop-banner-sidebar.html" class="category-media">
+                                        <img src="assets/images/demos/demo1/categories/2-1.jpg" alt="Category"
+                                            width="130" height="130">
+                                    </a>
+                                    <div class="category-content">
+                                        <h4 class="category-name">Fashion</h4>
+                                        <a href="shop-banner-sidebar.html"
+                                            class="btn btn-primary btn-link btn-underline">Shop
+                                            Now</a>
+                                    </div>
+                                </div>
+                                <div
+                                    class="swiper-slide category category-classic category-absolute overlay-zoom br-xs">
+                                    <a href="shop-banner-sidebar.html" class="category-media">
+                                        <img src="assets/images/demos/demo1/categories/2-2.jpg" alt="Category"
+                                            width="130" height="130">
+                                    </a>
+                                    <div class="category-content">
+                                        <h4 class="category-name">Furniture</h4>
+                                        <a href="shop-banner-sidebar.html"
+                                            class="btn btn-primary btn-link btn-underline">Shop
+                                            Now</a>
+                                    </div>
+                                </div>
+                                <div
+                                    class="swiper-slide category category-classic category-absolute overlay-zoom br-xs">
+                                    <a href="shop-banner-sidebar.html" class="category-media">
+                                        <img src="assets/images/demos/demo1/categories/2-3.jpg" alt="Category"
+                                            width="130" height="130">
+                                    </a>
+                                    <div class="category-content">
+                                        <h4 class="category-name">Shoes</h4>
+                                        <a href="shop-banner-sidebar.html"
+                                            class="btn btn-primary btn-link btn-underline">Shop
+                                            Now</a>
+                                    </div>
+                                </div>
+                                <div
+                                    class="swiper-slide category category-classic category-absolute overlay-zoom br-xs">
+                                    <a href="shop-banner-sidebar.html" class="category-media">
+                                        <img src="assets/images/demos/demo1/categories/2-4.jpg" alt="Category"
+                                            width="130" height="130">
+                                    </a>
+                                    <div class="category-content">
+                                        <h4 class="category-name">Sports</h4>
+                                        <a href="shop-banner-sidebar.html"
+                                            class="btn btn-primary btn-link btn-underline">Shop
+                                            Now</a>
+                                    </div>
+                                </div>
+                                <div
+                                    class="swiper-slide category category-classic category-absolute overlay-zoom br-xs">
+                                    <a href="shop-banner-sidebar.html" class="category-media">
+                                        <img src="assets/images/demos/demo1/categories/2-5.jpg" alt="Category"
+                                            width="130" height="130">
+                                    </a>
+                                    <div class="category-content">
+                                        <h4 class="category-name">Games</h4>
+                                        <a href="shop-banner-sidebar.html"
+                                            class="btn btn-primary btn-link btn-underline">Shop
+                                            Now</a>
+                                    </div>
+                                </div>
+                                <div
+                                    class="swiper-slide category category-classic category-absolute overlay-zoom br-xs">
+                                    <a href="shop-banner-sidebar.html" class="category-media">
+                                        <img src="assets/images/demos/demo1/categories/2-6.jpg" alt="Category"
+                                            width="130" height="130">
+                                    </a>
+                                    <div class="category-content">
+                                        <h4 class="category-name">Computers</h4>
+                                        <a href="shop-banner-sidebar.html"
+                                            class="btn btn-primary btn-link btn-underline">Shop
+                                            Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End of .category-section top-category -->
+
+            <div class="container">
+                <h2 class="title justify-content-center ls-normal mb-4 mt-10 pt-1 appear-animate">Popular Departments
+                </h2>
+                <div class="tab tab-nav-boxed tab-nav-outline appear-animate">
+                    <ul class="nav nav-tabs justify-content-center" role="tablist">
+                        <li class="nav-item mr-2 mb-2">
+                            <a class="nav-link active br-sm font-size-md ls-normal" href="#tab1-1">New arrivals</a>
+                        </li>
+                        <li class="nav-item mr-2 mb-2">
+                            <a class="nav-link br-sm font-size-md ls-normal" href="#tab1-2">Best seller</a>
+                        </li>
+                        <li class="nav-item mr-2 mb-2">
+                            <a class="nav-link br-sm font-size-md ls-normal" href="#tab1-3">most popular</a>
+                        </li>
+                        <li class="nav-item mr-0 mb-2">
+                            <a class="nav-link br-sm font-size-md ls-normal" href="#tab1-4">Featured</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End of Tab -->
+                <div class="tab-content product-wrapper appear-animate">
+                    <div class="tab-pane active pt-4" id="tab1-1">
+                        <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2">
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-1-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-1-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Classic Hat</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(1 Reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$53.00</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Women’s White
+                                                Handbag</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 80%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$26.62</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-3.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                        <div class="product-label-group">
+                                            <label class="product-label label-discount">7% Off</label>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Multi Funtional Apple
+                                                iPhone</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(5 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">136.26</ins>
+                                            <del class="old-price">$145.90</del>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-4-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-4-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Fashion Blue Towel</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(8 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$26.55 - $29.99</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-5.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                        <div class="product-label-group">
+                                            <label class="product-label label-discount">4% Off</label>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Apple Super Notecom</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(4 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$243.30</ins>
+                                            <del class="old-price">$253.50</del>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-6-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-6-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Women’s Comforter</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(10 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$32.00 - $33.26</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-7.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Multi-colorful Music</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$260.59 - $297.83</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-8-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-8-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Comfortable Backpack</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(6 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$45.90</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-9.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Data Transformer Tool
+                                            </a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <span class="price">$64.47</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-10.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Women’s hairdye</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <span class="price">$173.84</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End of Tab Pane -->
+                    <div class="tab-pane pt-4" id="tab1-2">
+                        <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2">
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-4-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-4-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Fashion Blue Towel</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(8 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$26.55 - $29.99</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-3.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                        <div class="product-label-group">
+                                            <label class="product-label label-discount">7% Off</label>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Multi Funtional Apple
+                                                iPhone</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(5 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">136.26</ins>
+                                            <del class="old-price">$145.90</del>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-8-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-8-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Comfortable Backpack</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(6 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$45.90</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-9.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Data Transformer Tool
+                                            </a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <span class="price">$64.47</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-5.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                        <div class="product-label-group">
+                                            <label class="product-label label-discount">4% Off</label>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Apple Super Notecom</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(4 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$243.30</ins>
+                                            <del class="old-price">$253.50</del>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-6-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-6-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Women’s Comforter</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(10 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$32.00 - $33.26</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-7.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Multi-colorful Music</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$260.59 - $297.83</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-1-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-1-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Classic Hat</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(1 Reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$53.00</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Women’s White
+                                                Handbag</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 80%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$26.62</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-10.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Women’s hairdye</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <span class="price">$173.84</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End of Tab Pane -->
+                    <div class="tab-pane pt-4" id="tab1-3">
+                        <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2">
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-9.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Data Transformer Tool
+                                            </a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <span class="price">$64.47</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-1-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-1-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Classic Hat</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(1 Reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$53.00</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-3.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                        <div class="product-label-group">
+                                            <label class="product-label label-discount">7% Off</label>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Multi Funtional Apple
+                                                iPhone</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(5 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">136.26</ins>
+                                            <del class="old-price">$145.90</del>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Women’s White
+                                                Handbag</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 80%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$26.62</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-10.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Women’s hairdye</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <span class="price">$173.84</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-8-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-8-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Comfortable Backpack</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(6 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$45.90</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-5.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                        <div class="product-label-group">
+                                            <label class="product-label label-discount">4% Off</label>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Apple Super Notecom</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(4 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$243.30</ins>
+                                            <del class="old-price">$253.50</del>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-7.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Multi-colorful Music</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$260.59 - $297.83</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-6-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-6-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Women’s Comforter</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(10 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$32.00 - $33.26</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-4-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-4-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Fashion Blue Towel</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(8 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$26.55 - $29.99</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End of Tab Pane -->
+                    <div class="tab-pane pt-4" id="tab1-4">
+                        <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2">
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-4-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-4-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Fashion Blue Towel</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(8 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$26.55 - $29.99</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-10.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Women’s hairdye</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <span class="price">$173.84</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-9.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Data Transformer Tool
+                                            </a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <span class="price">$64.47</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-8-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-8-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Comfortable Backpack</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(6 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$45.90</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Women’s White
+                                                Handbag</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 80%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$26.62</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-5.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                        <div class="product-label-group">
+                                            <label class="product-label label-discount">4% Off</label>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Apple Super Notecom</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(4 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$243.30</ins>
+                                            <del class="old-price">$253.50</del>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-3.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                        <div class="product-label-group">
+                                            <label class="product-label label-discount">7% Off</label>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Multi Funtional Apple
+                                                iPhone</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(5 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">136.26</ins>
+                                            <del class="old-price">$145.90</del>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-7.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Multi-colorful Music</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$260.59 - $297.83</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-6-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-6-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Women’s Comforter</a>
+                                        </h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 100%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(10 reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$32.00 - $33.26</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-wrap">
+                                <div class="product text-center">
+                                    <figure class="product-media">
+                                        <a href="product-default.html">
+                                            <img src="assets/images/demos/demo1/products/3-1-1.jpg" alt="Product"
+                                                width="300" height="338" />
+                                            <img src="assets/images/demos/demo1/products/3-1-2.jpg" alt="Product"
+                                                width="300" height="338" />
+                                        </a>
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                title="Add to cart"></a>
+                                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                title="Add to wishlist"></a>
+                                            <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                title="Quickview"></a>
+                                            <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                title="Add to Compare"></a>
+                                        </div>
+                                    </figure>
+                                    <div class="product-details">
+                                        <h4 class="product-name"><a href="product-default.html">Classic Hat</a></h4>
+                                        <div class="ratings-container">
+                                            <div class="ratings-full">
+                                                <span class="ratings" style="width: 60%;"></span>
+                                                <span class="tooltiptext tooltip-top"></span>
+                                            </div>
+                                            <a href="product-default.html" class="rating-reviews">(1 Reviews)</a>
+                                        </div>
+                                        <div class="product-price">
+                                            <ins class="new-price">$53.00</ins>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End of Tab Pane -->
+                </div>
+                <!-- End of Tab Content -->
+
+                <div class="row category-cosmetic-lifestyle appear-animate mb-5">
+                    <div class="col-md-6 mb-4">
+                        <div class="banner banner-fixed category-banner-1 br-xs">
+                            <figure>
+                                <img src="assets/images/demos/demo1/categories/3-1.jpg" alt="Category Banner"
+                                    width="610" height="200" style="background-color: #3B4B48;" />
+                            </figure>
+                            <div class="banner-content y-50 pt-1">
+                                <h5 class="banner-subtitle font-weight-bold text-uppercase">Natural Process</h5>
+                                <h3 class="banner-title font-weight-bolder text-capitalize text-white">Cosmetic
+                                    Makeup<br>Professional</h3>
+                                <a href="shop-banner-sidebar.html"
+                                    class="btn btn-white btn-link btn-underline btn-icon-right">Shop Now<i
+                                        class="w-icon-long-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="banner banner-fixed category-banner-2 br-xs">
+                            <figure>
+                                <img src="assets/images/demos/demo1/categories/3-2.jpg" alt="Category Banner"
+                                    width="610" height="200" style="background-color: #E5E5E5;" />
+                            </figure>
+                            <div class="banner-content y-50 pt-1">
+                                <h5 class="banner-subtitle font-weight-bold text-uppercase">Trending Now</h5>
+                                <h3 class="banner-title font-weight-bolder text-capitalize">Women's
+                                    Lifestyle<br>Collection</h3>
+                                <a href="shop-banner-sidebar.html"
+                                    class="btn btn-dark btn-link btn-underline btn-icon-right">Shop Now<i
+                                        class="w-icon-long-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Category Cosmetic Lifestyle -->
+
+                <div class="product-wrapper-1 appear-animate mb-5">
+                    <div class="title-link-wrapper pb-1 mb-4">
+                        <h2 class="title ls-normal mb-0">Clothing & Apparel</h2>
+                        <a href="shop-boxed-banner.html" class="font-size-normal font-weight-bold ls-25 mb-0">More
+                            Products<i class="w-icon-long-arrow-right"></i></a>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-4 mb-4">
+                            <div class="banner h-100 br-sm" style="background-image: url(assets/images/demos/demo1/banners/2.jpg); 
+                                background-color: #ebeced;">
+                                <div class="banner-content content-top">
+                                    <h5 class="banner-subtitle font-weight-normal mb-2">Weekend Sale</h5>
+                                    <hr class="banner-divider bg-dark mb-2">
+                                    <h3 class="banner-title font-weight-bolder ls-25 text-uppercase">
+                                        New Arrivals<br> <span
+                                            class="font-weight-normal text-capitalize">Collection</span>
+                                    </h3>
+                                    <a href="shop-banner-sidebar.html"
+                                        class="btn btn-dark btn-outline btn-rounded btn-sm">shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of Banner -->
+                        <div class="col-lg-9 col-sm-8">
+                            <div class="swiper-container swiper-theme" data-swiper-options="{
+                                'spaceBetween': 20,
+                                'slidesPerView': 2,
+                                'breakpoints': {
+                                    '992': {
+                                        'slidesPerView': 3
+                                    },
+                                    '1200': {
+                                        'slidesPerView': 4
+                                    }
+                                }
+                            }">
+                                <div class="swiper-wrapper row cols-xl-4 cols-lg-3 cols-2">
+                                    <div class="swiper-slide product-col">
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="#">
+                                                    <img src="assets/images/demos/demo1/products/4-1.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Men’s
+                                                        Clothing</a>
+                                                </h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 60%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(3
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$23.99</ins><del
+                                                        class="old-price">$25.68</del>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="#">
+                                                    <img src="assets/images/demos/demo1/products/4-5-1.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                    <img src="assets/images/demos/demo1/products/4-5-2.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Best Travel
+                                                        Bag</a>
+                                                </h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 60%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(3
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$25.68</ins><del
+                                                        class="old-price">$28.99</del>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide product-col">
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="#">
+                                                    <img src="assets/images/demos/demo1/products/4-2-1.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                    <img src="assets/images/demos/demo1/products/4-2-2.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Women’s Fashion
+                                                        Handbag </a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 60%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(3
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$25.68</ins><del
+                                                        class="old-price">$25.89</del>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="#">
+                                                    <img src="assets/images/demos/demo1/products/4-6.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Gray Leather
+                                                        Shoes</a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 60%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(3
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$26.88</ins><del
+                                                        class="old-price">$27.89</del>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide product-col">
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="#">
+                                                    <img src="assets/images/demos/demo1/products/4-3.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Black Winter
+                                                        Skating</a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 60%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(3
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$40.86</ins><del
+                                                        class="old-price">$45.89</del>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="#">
+                                                    <img src="assets/images/demos/demo1/products/4-7.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Men's Black
+                                                        Wrist
+                                                        Watch</a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 60%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(3
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$135.60</ins><del
+                                                        class="old-price">$155.70</del>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide product-col">
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="#">
+                                                    <img src="assets/images/demos/demo1/products/4-4-1.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                    <img src="assets/images/demos/demo1/products/4-4-2.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Sport Women's
+                                                        Wear</a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 60%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(3
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$220.20</ins><del
+                                                        class="old-price">$300.62</del>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="#">
+                                                    <img src="assets/images/demos/demo1/products/4-8.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Women’s Hiking
+                                                        Hat</a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 60%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(3
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <span class="price">$53.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Product Wrapper 1 -->
+
+                <div class="product-wrapper-1 appear-animate mb-8">
+                    <div class="title-link-wrapper pb-1 mb-4">
+                        <h2 class="title ls-normal mb-0">Consumer Electric</h2>
+                        <a href="shop-boxed-banner.html" class="font-size-normal font-weight-bold ls-25 mb-0">More
+                            Products<i class="w-icon-long-arrow-right"></i></a>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-4 mb-4">
+                            <div class="banner h-100 br-sm" style="background-image: url(assets/images/demos/demo1/banners/3.jpg); 
+                            background-color: #252525;">
+                                <div class="banner-content content-top">
+                                    <h5 class="banner-subtitle text-white font-weight-normal mb-2">New Collection</h5>
+                                    <hr class="banner-divider bg-white mb-2">
+                                    <h3 class="banner-title text-white font-weight-bolder text-uppercase ls-25">
+                                        Top Camera <br> <span
+                                            class="font-weight-normal text-capitalize">Mirrorless</span>
+                                    </h3>
+                                    <a href="shop-banner-sidebar.html"
+                                        class="btn btn-white btn-outline btn-rounded btn-sm">shop now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of Banner -->
+                        <div class="col-lg-9 col-sm-8">
+                            <div class="swiper-container swiper-theme" data-swiper-options="{
+                                'spaceBetween': 20,
+                                'slidesPerView': 2,
+                                'breakpoints': {
+                                    '992': {
+                                        'slidesPerView': 3
+                                    },
+                                    '1200': {
+                                        'slidesPerView': 4
+                                    }
+                                }
+                            }">
+                                <div class="swiper-wrapper row cols-xl-4 cols-lg-3 cols-2">
+                                    <div class="swiper-slide product-col">
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/5-1-1.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                    <img src="assets/images/demos/demo1/products/5-1-2.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                                <div class="product-label-group">
+                                                    <label class="product-label label-discount">6% Off</label>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Professional
+                                                        Pixel
+                                                        Camera</a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 100%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(5
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$215.68</ins><del
+                                                        class="old-price">$230.45</del>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/5-5.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Latest
+                                                        Speaker</a>
+                                                </h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 60%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(3
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$250.68</ins>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide product-col">
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/5-2-1.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                    <img src="assets/images/demos/demo1/products/5-2-2.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Wash Machine</a>
+                                                </h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 100%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(9
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$215.68</ins>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/5-6.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Security
+                                                        Guard</a>
+                                                </h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 60%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(3
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$320.00</ins>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide product-col">
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/5-3.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                                <div class="product-label-group">
+                                                    <label class="product-label label-discount">10% Off</label>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">HD
+                                                        Television</a>
+                                                </h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 60%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(3
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$450.68</ins><del
+                                                        class="old-price">$500.00</del>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/5-7.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                                <div class="product-label-group">
+                                                    <label class="product-label label-discount">10% Off</label>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">USB Receipt</a>
+                                                </h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 100%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(5
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$26.89</ins><del
+                                                        class="old-price">$29.79</del>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide product-col">
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/5-4.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Data Transformer
+                                                        Tool</a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 100%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(6
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$64.47</ins>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/5-8.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                                <div class="product-label-group">
+                                                    <label class="product-label label-discount">7% Off</label>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Multi Functional
+                                                        Apple iPhone</a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 100%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(9
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$136.26</ins><del
+                                                        class="old-price">$145.90</del>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                            <!-- End of Produts -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Product Wrapper 1 -->
+
+                <div class="banner banner-fashion appear-animate br-sm mb-9" style="background-image: url(assets/images/demos/demo1/banners/4.jpg);
+                    background-color: #383839;">
+                    <div class="banner-content align-items-center">
+                        <div class="content-left d-flex align-items-center mb-3">
+                            <div class="banner-price-info font-weight-bolder text-secondary text-uppercase lh-1 ls-25">
+                                25
+                                <sup class="font-weight-bold">%</sup><sub class="font-weight-bold ls-25">Off</sub>
+                            </div>
+                            <hr class="banner-divider bg-white mt-0 mb-0 mr-8">
+                        </div>
+                        <div class="content-right d-flex align-items-center flex-1 flex-wrap">
+                            <div class="banner-info mb-0 mr-auto pr-4 mb-3">
+                                <h3 class="banner-title text-white font-weight-bolder text-uppercase ls-25">For Today's
+                                    Fashion</h3>
+                                <p class="text-white mb-0">Use code
+                                    <span
+                                        class="text-dark bg-white font-weight-bold ls-50 pl-1 pr-1 d-inline-block">Black
+                                        <strong>12345</strong></span> to get best offer.</p>
+                            </div>
+                            <a href="shop-banner-sidebar.html"
+                                class="btn btn-white btn-outline btn-rounded btn-icon-right mb-3">Shop Now<i
+                                    class="w-icon-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Banner Fashion -->
+
+                <div class="product-wrapper-1 appear-animate mb-7">
+                    <div class="title-link-wrapper pb-1 mb-4">
+                        <h2 class="title ls-normal mb-0">Home Garden & Kitchen</h2>
+                        <a href="shop-boxed-banner.html" class="font-size-normal font-weight-bold ls-25 mb-0">More
+                            Products<i class="w-icon-long-arrow-right"></i></a>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-4 mb-4">
+                            <div class="banner h-100 br-sm" style="background-image: url(assets/images/demos/demo1/banners/5.jpg); 
+                            background-color: #EAEFF3;">
+                                <div class="banner-content content-top">
+                                    <h5 class="banner-subtitle font-weight-normal mb-2">Deals And Promotions</h5>
+                                    <hr class="banner-divider bg-dark mb-2">
+                                    <h3 class="banner-title font-weight-bolder text-uppercase ls-25">
+                                        Trending <br> <span class="font-weight-normal text-capitalize">House
+                                            Utensil</span>
+                                    </h3>
+                                    <a href="shop-banner-sidebar.html"
+                                        class="btn btn-dark btn-outline btn-rounded btn-sm">shop now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of Banner -->
+                        <div class="col-lg-9 col-sm-8">
+                            <div class="swiper-container swiper-theme" data-swiper-options="{
+                                'spaceBetween': 20,
+                                'slidesPerView': 2,
+                                'breakpoints': {
+                                    '992': {
+                                        'slidesPerView': 3
+                                    },
+                                    '1200': {
+                                        'slidesPerView': 4
+                                    }
+                                }
+                            }">
+                                <div class="swiper-wrapper row cols-xl-4 cols-lg-3 cols-2">
+                                    <div class="swiper-slide product-col">
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/6-1.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Home Sofa</a>
+                                                </h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 100%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(5
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$75.99</ins>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/6-5.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Electric
+                                                        Rice-Cooker</a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 60%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(3
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$215.00</ins>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide product-col">
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/6-2-1.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                    <img src="assets/images/demos/demo1/products/6-2-2.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                                <div class="product-label-group">
+                                                    <label class="product-label label-discount">21% Off</label>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Kitchen
+                                                        Table</a>
+                                                </h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 100%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(9
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$75.50</ins><del
+                                                        class="old-price">$95.68</del>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/6-6.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Kitchen
+                                                        Cooker</a>
+                                                </h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 60%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(3
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$150.60</ins>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide product-col">
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/6-3-1.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                    <img src="assets/images/demos/demo1/products/6-3-2.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Table Lamp</a>
+                                                </h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 60%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(3
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$45.60</ins>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/6-7.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                                <div class="product-label-group">
+                                                    <label class="product-label label-discount">12% Off</label>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Electric Frying
+                                                        Pan</a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 100%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(5
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$137.35</ins><del
+                                                        class="old-price">$155.65</del>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide product-col">
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/6-4.jpg" alt="Product"
+                                                        width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                                <div class="product-label-group">
+                                                    <label class="product-label label-discount">18% Off</label>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Latest Chair</a>
+                                                </h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 100%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(6
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$70.00</ins><del
+                                                        class="old-price">$85.00</del>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-wrap product text-center">
+                                            <figure class="product-media">
+                                                <a href="product-default.html">
+                                                    <img src="assets/images/demos/demo1/products/6-8-1.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                    <img src="assets/images/demos/demo1/products/6-8-2.jpg"
+                                                        alt="Product" width="216" height="243" />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Add to wishlist"></a>
+                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quickview"></a>
+                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Add to Compare"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h4 class="product-name"><a href="product-default.html">Automatic
+                                                        Crusher</a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 100%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(9
+                                                        reviews)</a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <ins class="new-price">$220.25</ins>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                            <!-- End of Produts -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Product Wrapper 1 -->
+
+                <h2 class="title title-underline mb-4 ls-normal appear-animate">Our Clients</h2>
+                <div class="swiper-container swiper-theme brands-wrapper mb-9 appear-animate" data-swiper-options="{
+                    'spaceBetween': 0,
+                    'slidesPerView': 2,
+                    'breakpoints': {
+                        '576': {
+                            'slidesPerView': 3
+                        },
+                        '768': {
+                            'slidesPerView': 4
+                        },
+                        '992': {
+                            'slidesPerView': 5
+                        },
+                        '1200': {
+                            'slidesPerView': 6
+                        }
+                    }
+                }">
+                    <div class="swiper-wrapper row gutter-no cols-xl-6 cols-lg-5 cols-md-4 cols-sm-3 cols-2">
+                        <div class="swiper-slide brand-col">
+                            <figure class="brand-wrapper">
+                                <img src="assets/images/demos/demo1/brands/1.png" alt="Brand" width="410"
+                                    height="186" />
+                            </figure>
+                            <figure class="brand-wrapper">
+                                <img src="assets/images/demos/demo1/brands/2.png" alt="Brand" width="410"
+                                    height="186" />
+                            </figure>
+                        </div>
+                        <div class="swiper-slide brand-col">
+                            <figure class="brand-wrapper">
+                                <img src="assets/images/demos/demo1/brands/3.png" alt="Brand" width="410"
+                                    height="186" />
+                            </figure>
+                            <figure class="brand-wrapper">
+                                <img src="assets/images/demos/demo1/brands/4.png" alt="Brand" width="410"
+                                    height="186" />
+                            </figure>
+                        </div>
+                        <div class="swiper-slide brand-col">
+                            <figure class="brand-wrapper">
+                                <img src="assets/images/demos/demo1/brands/5.png" alt="Brand" width="410"
+                                    height="186" />
+                            </figure>
+                            <figure class="brand-wrapper">
+                                <img src="assets/images/demos/demo1/brands/6.png" alt="Brand" width="410"
+                                    height="186" />
+                            </figure>
+                        </div>
+                        <div class="swiper-slide brand-col">
+                            <figure class="brand-wrapper">
+                                <img src="assets/images/demos/demo1/brands/7.png" alt="Brand" width="410"
+                                    height="186" />
+                            </figure>
+                            <figure class="brand-wrapper">
+                                <img src="assets/images/demos/demo1/brands/8.png" alt="Brand" width="410"
+                                    height="186" />
+                            </figure>
+                        </div>
+                        <div class="swiper-slide brand-col">
+                            <figure class="brand-wrapper">
+                                <img src="assets/images/demos/demo1/brands/9.png" alt="Brand" width="410"
+                                    height="186" />
+                            </figure>
+                            <figure class="brand-wrapper">
+                                <img src="assets/images/demos/demo1/brands/10.png" alt="Brand" width="410"
+                                    height="186" />
+                            </figure>
+                        </div>
+                        <div class="swiper-slide brand-col">
+                            <figure class="brand-wrapper">
+                                <img src="assets/images/demos/demo1/brands/11.png" alt="Brand" width="410"
+                                    height="186" />
+                            </figure>
+                            <figure class="brand-wrapper">
+                                <img src="assets/images/demos/demo1/brands/12.png" alt="Brand" width="410"
+                                    height="186" />
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Brands Wrapper -->
+
+                <div class="post-wrapper appear-animate mb-4">
+                    <div class="title-link-wrapper pb-1 mb-4">
+                        <h2 class="title ls-normal mb-0">From Our Blog</h2>
+                        <a href="blog-listing.html" class="font-weight-bold font-size-normal">View All Articles</a>
+                    </div>
+                    <div class="swiper">
+                        <div class="swiper-container swiper-theme" data-swiper-options="{
+                            'slidesPerView': 1,
+                            'spaceBetween': 20,
+                            'breakpoints': {
+                                '576': {
+                                    'slidesPerView': 2
+                                },
+                                '768': {
+                                    'slidesPerView': 3
+                                },
+                                '992': {
+                                    'slidesPerView': 4
+                                }
+                            }
+                        }">
+                            <div class="swiper-wrapper row cols-lg-4 cols-md-3 cols-sm-2 cols-1">
+                                <div class="swiper-slide post text-center overlay-zoom">
+                                    <figure class="post-media br-sm">
+                                        <a href="post-single.html">
+                                            <img src="assets/images/demos/demo1/blogs/1.jpg" alt="Post" width="280"
+                                                height="180" style="background-color: #4b6e91;" />
+                                        </a>
+                                    </figure>
+                                    <div class="post-details">
+                                        <div class="post-meta">
+                                            by <a href="#" class="post-author">John Doe</a>
+                                            - <a href="#" class="post-date mr-0">03.05.2021</a>
+                                        </div>
+                                        <h4 class="post-title"><a href="post-single.html">Aliquam tincidunt mauris
+                                                eurisus</a>
+                                        </h4>
+                                        <a href="post-single.html" class="btn btn-link btn-dark btn-underline">Read
+                                            More<i class="w-icon-long-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide post text-center overlay-zoom">
+                                    <figure class="post-media br-sm">
+                                        <a href="post-single.html">
+                                            <img src="assets/images/demos/demo1/blogs/2.jpg" alt="Post" width="280"
+                                                height="180" style="background-color: #cec9cf;" />
+                                        </a>
+                                    </figure>
+                                    <div class="post-details">
+                                        <div class="post-meta">
+                                            by <a href="#" class="post-author">John Doe</a>
+                                            - <a href="#" class="post-date mr-0">03.05.2021</a>
+                                        </div>
+                                        <h4 class="post-title"><a href="post-single.html">Cras ornare tristique elit</a>
+                                        </h4>
+                                        <a href="post-single.html" class="btn btn-link btn-dark btn-underline">Read
+                                            More<i class="w-icon-long-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide post text-center overlay-zoom">
+                                    <figure class="post-media br-sm">
+                                        <a href="post-single.html">
+                                            <img src="assets/images/demos/demo1/blogs/3.jpg" alt="Post" width="280"
+                                                height="180" style="background-color: #c9c7bb;" />
+                                        </a>
+                                    </figure>
+                                    <div class="post-details">
+                                        <div class="post-meta">
+                                            by <a href="#" class="post-author">John Doe</a>
+                                            - <a href="#" class="post-date mr-0">03.05.2021</a>
+                                        </div>
+                                        <h4 class="post-title"><a href="post-single.html">Vivamus vestibulum ntulla nec
+                                                ante</a>
+                                        </h4>
+                                        <a href="post-single.html" class="btn btn-link btn-dark btn-underline">Read
+                                            More<i class="w-icon-long-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide post text-center overlay-zoom">
+                                    <figure class="post-media br-sm">
+                                        <a href="post-single.html">
+                                            <img src="assets/images/demos/demo1/blogs/4.jpg" alt="Post" width="280"
+                                                height="180" style="background-color: #d8dce0;" />
+                                        </a>
+                                    </figure>
+                                    <div class="post-details">
+                                        <div class="post-meta">
+                                            by <a href="#" class="post-author">John Doe</a>
+                                            - <a href="#" class="post-date mr-0">03.05.2021</a>
+                                        </div>
+                                        <h4 class="post-title"><a href="post-single.html">Fusce lacinia arcuet nulla</a>
+                                        </h4>
+                                        <a href="post-single.html" class="btn btn-link btn-dark btn-underline">Read
+                                            More<i class="w-icon-long-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post Wrapper -->
+
+                <h2 class="title title-underline mb-4 ls-normal appear-animate">Your Recent Views</h2>
+                <div class="swiper-container swiper-theme shadow-swiper appear-animate pb-4 mb-8" data-swiper-options="{
+                    'spaceBetween': 20,
+                    'slidesPerView': 2,
+                    'breakpoints': {
+                        '576': {
+                            'slidesPerView': 3
+                        },
+                        '768': {
+                            'slidesPerView': 5
+                        },
+                        '992': {
+                            'slidesPerView': 6
+                        },
+                        '1200': {
+                            'slidesPerView': 8
+                        }
+                    }
+                }">
+                    <div class="swiper-wrapper row cols-xl-8 cols-lg-6 cols-md-4 cols-2">
+                        <div class="swiper-slide product-wrap mb-0">
+                            <div class="product text-center product-absolute">
+                                <figure class="product-media">
+                                    <a href="product-defaproduct-default.html">
+                                        <img src="assets/images/demos/demo1/products/7-1.jpg" alt="Category image"
+                                            width="130" height="146" style="background-color: #fff" />
+                                    </a>
+                                </figure>
+                                <h4 class="product-name">
+                                    <a href="product-default.html">Women's Fashion Handbag</a>
+                                </h4>
+                            </div>
+                        </div>
+                        <!-- End of Product Wrap -->
+                        <div class="swiper-slide product-wrap mb-0">
+                            <div class="product text-center product-absolute">
+                                <figure class="product-media">
+                                    <a href="product-defaproduct-default.html">
+                                        <img src="assets/images/demos/demo1/products/7-2.jpg" alt="Category image"
+                                            width="130" height="146" style="background-color: #fff" />
+                                    </a>
+                                </figure>
+                                <h4 class="product-name">
+                                    <a href="product-default.html">Electric Frying Pan</a>
+                                </h4>
+                            </div>
+                        </div>
+                        <!-- End of Product Wrap -->
+                        <div class="swiper-slide product-wrap mb-0">
+                            <div class="product text-center product-absolute">
+                                <figure class="product-media">
+                                    <a href="product-defaproduct-default.html">
+                                        <img src="assets/images/demos/demo1/products/7-3.jpg" alt="Category image"
+                                            width="130" height="146" style="background-color: #fff" />
+                                    </a>
+                                </figure>
+                                <h4 class="product-name">
+                                    <a href="product-default.html">Black Winter Skating</a>
+                                </h4>
+                            </div>
+                        </div>
+                        <!-- End of Product Wrap -->
+                        <div class="swiper-slide product-wrap mb-0">
+                            <div class="product text-center product-absolute">
+                                <figure class="product-media">
+                                    <a href="product-defaproduct-default.html">
+                                        <img src="assets/images/demos/demo1/products/7-4.jpg" alt="Category image"
+                                            width="130" height="146" style="background-color: #fff" />
+                                    </a>
+                                </figure>
+                                <h4 class="product-name">
+                                    <a href="product-default.html">HD Television</a>
+                                </h4>
+                            </div>
+                        </div>
+                        <!-- End of Product Wrap -->
+                        <div class="swiper-slide product-wrap mb-0">
+                            <div class="product text-center product-absolute">
+                                <figure class="product-media">
+                                    <a href="product-defaproduct-default.html">
+                                        <img src="assets/images/demos/demo1/products/7-5.jpg" alt="Category image"
+                                            width="130" height="146" style="background-color: #fff" />
+                                    </a>
+                                </figure>
+                                <h4 class="product-name">
+                                    <a href="product-default.html">Home Sofa</a>
+                                </h4>
+                            </div>
+                        </div>
+                        <!-- End of Product Wrap -->
+                        <div class="swiper-slide product-wrap mb-0">
+                            <div class="product text-center product-absolute">
+                                <figure class="product-media">
+                                    <a href="product-defaproduct-default.html">
+                                        <img src="assets/images/demos/demo1/products/7-6.jpg" alt="Category image"
+                                            width="130" height="146" style="background-color: #fff" />
+                                    </a>
+                                </figure>
+                                <h4 class="product-name">
+                                    <a href="product-default.html">USB Receipt</a>
+                                </h4>
+                            </div>
+                        </div>
+                        <!-- End of Product Wrap -->
+                        <div class="swiper-slide product-wrap mb-0">
+                            <div class="product text-center product-absolute">
+                                <figure class="product-media">
+                                    <a href="product-defaproduct-default.html">
+                                        <img src="assets/images/demos/demo1/products/7-7.jpg" alt="Category image"
+                                            width="130" height="146" style="background-color: #fff" />
+                                    </a>
+                                </figure>
+                                <h4 class="product-name">
+                                    <a href="product-default.html">Electric Rice-Cooker</a>
+                                </h4>
+                            </div>
+                        </div>
+                        <!-- End of Product Wrap -->
+                        <div class="swiper-slide product-wrap mb-0">
+                            <div class="product text-center product-absolute">
+                                <figure class="product-media">
+                                    <a href="product-defaproduct-default.html">
+                                        <img src="assets/images/demos/demo1/products/7-8.jpg" alt="Category image"
+                                            width="130" height="146" style="background-color: #fff" />
+                                    </a>
+                                </figure>
+                                <h4 class="product-name">
+                                    <a href="product-default.html">Table Lamp</a>
+                                </h4>
+                            </div>
+                        </div>
+                        <!-- End of Product Wrap -->
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <!-- End of Reviewed Producs -->
+            </div>
+            <!--End of Catainer -->
+        </main>
+        <!-- End of Main -->
+
+        <!-- Start of Footer -->
+        <footer class="footer appear-animate" data-animation-options="{
+            'name': 'fadeIn'
+        }">
+            <div class="footer-newsletter bg-primary">
+                <div class="container">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-xl-5 col-lg-6">
+                            <div class="icon-box icon-box-side text-white">
+                                <div class="icon-box-icon d-inline-flex">
+                                    <i class="w-icon-envelop3"></i>
+                                </div>
+                                <div class="icon-box-content">
+                                    <h4 class="icon-box-title text-white text-uppercase font-weight-bold">Subscribe To
+                                        Our Newsletter</h4>
+                                    <p class="text-white">Get all the latest information on Events, Sales and Offers.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-lg-6 col-md-9 mt-4 mt-lg-0 ">
+                            <form action="#" method="get"
+                                class="input-wrapper input-wrapper-inline input-wrapper-rounded">
+                                <input type="email" class="form-control mr-2 bg-white" name="email" id="email"
+                                    placeholder="Your E-mail Address" />
+                                <button class="btn btn-dark btn-rounded" type="submit">Subscribe<i
+                                        class="w-icon-long-arrow-right"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="footer-top">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="widget widget-about">
+                                <a href="index.php" class="logo-footer">
+                                    <img src="assets/images/logo_footer.png" alt="logo-footer" width="144"
+                                        height="45" />
+                                </a>
+                                <div class="widget-body">
+                                    <p class="widget-about-title">Got Question? Call us 24/7</p>
+                                    <a href="tel:18005707777" class="widget-about-call">1-800-570-7777</a>
+                                    <p class="widget-about-desc">Register now to get updates on pronot get up icons
+                                        & coupons ster now toon.
+                                    </p>
+
+                                    <div class="social-icons social-icons-colored">
+                                        <a href="#" class="social-icon social-facebook w-icon-facebook"></a>
+                                        <a href="#" class="social-icon social-twitter w-icon-twitter"></a>
+                                        <a href="#" class="social-icon social-instagram w-icon-instagram"></a>
+                                        <a href="#" class="social-icon social-youtube w-icon-youtube"></a>
+                                        <a href="#" class="social-icon social-pinterest w-icon-pinterest"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="widget">
+                                <h3 class="widget-title">Company</h3>
+                                <ul class="widget-body">
+                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li><a href="#">Team Member</a></li>
+                                    <li><a href="#">Career</a></li>
+                                    <li><a href="contact-us.html">Contact Us</a></li>
+                                    <li><a href="#">Affilate</a></li>
+                                    <li><a href="#">Order History</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="widget">
+                                <h4 class="widget-title">My Account</h4>
+                                <ul class="widget-body">
+                                    <li><a href="#">Track My Order</a></li>
+                                    <li><a href="cart.html">View Cart</a></li>
+                                    <li><a href="login.html">Sign In</a></li>
+                                    <li><a href="#">Help</a></li>
+                                    <li><a href="wishlist.html">My Wishlist</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="widget">
+                                <h4 class="widget-title">Customer Service</h4>
+                                <ul class="widget-body">
+                                    <li><a href="#">Payment Methods</a></li>
+                                    <li><a href="#">Money-back guarantee!</a></li>
+                                    <li><a href="#">Product Returns</a></li>
+                                    <li><a href="#">Support Center</a></li>
+                                    <li><a href="#">Shipping</a></li>
+                                    <li><a href="#">Term and Conditions</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-middle">
+                    <div class="widget widget-category">
+                        <div class="category-box">
+                            <h6 class="category-name">Consumer Electric:</h6>
+                            <a href="#">TV Television</a>
+                            <a href="#">Air Condition</a>
+                            <a href="#">Refrigerator</a>
+                            <a href="#">Washing Machine</a>
+                            <a href="#">Audio Speaker</a>
+                            <a href="#">Security Camera</a>
+                            <a href="#">View All</a>
+                        </div>
+                        <div class="category-box">
+                            <h6 class="category-name">Clothing & Apparel:</h6>
+                            <a href="#">Men's T-shirt</a>
+                            <a href="#">Dresses</a>
+                            <a href="#">Men's Sneacker</a>
+                            <a href="#">Leather Backpack</a>
+                            <a href="#">Watches</a>
+                            <a href="#">Jeans</a>
+                            <a href="#">Sunglasses</a>
+                            <a href="#">Boots</a>
+                            <a href="#">Rayban</a>
+                            <a href="#">Acccessories</a>
+                        </div>
+                        <div class="category-box">
+                            <h6 class="category-name">Home, Garden & Kitchen:</h6>
+                            <a href="#">Sofa</a>
+                            <a href="#">Chair</a>
+                            <a href="#">Bed Room</a>
+                            <a href="#">Living Room</a>
+                            <a href="#">Cookware</a>
+                            <a href="#">Utensil</a>
+                            <a href="#">Blender</a>
+                            <a href="#">Garden Equipments</a>
+                            <a href="#">Decor</a>
+                            <a href="#">Library</a>
+                        </div>
+                        <div class="category-box">
+                            <h6 class="category-name">Health & Beauty:</h6>
+                            <a href="#">Skin Care</a>
+                            <a href="#">Body Shower</a>
+                            <a href="#">Makeup</a>
+                            <a href="#">Hair Care</a>
+                            <a href="#">Lipstick</a>
+                            <a href="#">Perfume</a>
+                            <a href="#">View all</a>
+                        </div>
+                        <div class="category-box">
+                            <h6 class="category-name">Jewelry & Watches:</h6>
+                            <a href="#">Necklace</a>
+                            <a href="#">Pendant</a>
+                            <a href="#">Diamond Ring</a>
+                            <a href="#">Silver Earing</a>
+                            <a href="#">Leather Watcher</a>
+                            <a href="#">Rolex</a>
+                            <a href="#">Gucci</a>
+                            <a href="#">Australian Opal</a>
+                            <a href="#">Ammolite</a>
+                            <a href="#">Sun Pyrite</a>
+                        </div>
+                        <div class="category-box">
+                            <h6 class="category-name">Computer & Technologies:</h6>
+                            <a href="#">Laptop</a>
+                            <a href="#">iMac</a>
+                            <a href="#">Smartphone</a>
+                            <a href="#">Tablet</a>
+                            <a href="#">Apple</a>
+                            <a href="#">Asus</a>
+                            <a href="#">Drone</a>
+                            <a href="#">Wireless Speaker</a>
+                            <a href="#">Game Controller</a>
+                            <a href="#">View all</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-left">
+                        <p class="copyright">Copyright © 2021 Wolmart Store. All Rights Reserved.</p>
+                    </div>
+                    <div class="footer-right">
+                        <span class="payment-label mr-lg-8">We're using safe payment for</span>
+                        <figure class="payment">
+                            <img src="assets/images/payment.png" alt="payment" width="159" height="25" />
+                        </figure>
                     </div>
                 </div>
             </div>
         </footer>
-        <!-- FOOTER END -->
+        <!-- End of Footer -->
+    </div>
+    <!-- End of Page-wrapper-->
 
-    <!-- BACK-TO-TOP -->
-    <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+    <!-- Start of Sticky Footer -->
+    <div class="sticky-footer sticky-content fix-bottom">
+        <a href="index.php" class="sticky-link active">
+            <i class="w-icon-home"></i>
+            <p>Home</p>
+        </a>
+        <a href="shop-banner-sidebar.html" class="sticky-link">
+            <i class="w-icon-category"></i>
+            <p>Shop</p>
+        </a>
+        <a href="my-account.html" class="sticky-link">
+            <i class="w-icon-account"></i>
+            <p>Account</p>
+        </a>
+        <div class="cart-dropdown dir-up">
+            <a href="cart.html" class="sticky-link">
+                <i class="w-icon-cart"></i>
+                <p>Cart</p>
+            </a>
+            <div class="dropdown-box">
+                <div class="products">
+                    <div class="product product-cart">
+                        <div class="product-detail">
+                            <h3 class="product-name">
+                                <a href="product-default.html">Beige knitted elas<br>tic
+                                    runner shoes</a>
+                            </h3>
+                            <div class="price-box">
+                                <span class="product-quantity">1</span>
+                                <span class="product-price">$25.68</span>
+                            </div>
+                        </div>
+                        <figure class="product-media">
+                            <a href="product-default.html">
+                                <img src="assets/images/cart/product-1.jpg" alt="product" height="84" width="94" />
+                            </a>
+                        </figure>
+                        <button class="btn btn-link btn-close" aria-label="button">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
 
-    <!-- JQUERY JS -->
-    <script src="assets/js/jquery.min.js"></script>
+                    <div class="product product-cart">
+                        <div class="product-detail">
+                            <h3 class="product-name">
+                                <a href="product-default.html">Blue utility pina<br>fore
+                                    denim dress</a>
+                            </h3>
+                            <div class="price-box">
+                                <span class="product-quantity">1</span>
+                                <span class="product-price">$32.99</span>
+                            </div>
+                        </div>
+                        <figure class="product-media">
+                            <a href="product-default.html">
+                                <img src="assets/images/cart/product-2.jpg" alt="product" width="84" height="94" />
+                            </a>
+                        </figure>
+                        <button class="btn btn-link btn-close" aria-label="button">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
 
-    <!-- BOOTSTRAP JS -->
-    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+                <div class="cart-total">
+                    <label>Subtotal:</label>
+                    <span class="price">$58.67</span>
+                </div>
 
-    <!-- SPARKLINE JS-->
-    <script src="assets/js/jquery.sparkline.min.js"></script>
+                <div class="cart-action">
+                    <a href="cart.html" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
+                    <a href="checkout.html" class="btn btn-primary  btn-rounded">Checkout</a>
+                </div>
+            </div>
+            <!-- End of Dropdown Box -->
+        </div>
 
-    <!-- Sticky js -->
-    <script src="assets/js/sticky.js"></script>
+        <div class="header-search hs-toggle dir-up">
+            <a href="#" class="search-toggle sticky-link">
+                <i class="w-icon-search"></i>
+                <p>Search</p>
+            </a>
+            <form action="#" class="input-wrapper">
+                <input type="text" class="form-control" name="search" autocomplete="off" placeholder="Search"
+                    required />
+                <button class="btn btn-search" type="submit">
+                    <i class="w-icon-search"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- End of Sticky Footer -->
 
-    <!-- CHART-CIRCLE JS-->
-    <script src="assets/js/circle-progress.min.js"></script>
+    <!-- Start of Scroll Top -->
+    <a id="scroll-top" class="scroll-top" href="#top" title="Top" role="button"> <i class="w-icon-angle-up"></i> <svg
+            version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70">
+            <circle id="progress-indicator" fill="transparent" stroke="#000000" stroke-miterlimit="10" cx="35" cy="35"
+                r="34" style="stroke-dasharray: 16.4198, 400;"></circle>
+        </svg> </a>
+    <!-- End of Scroll Top -->
 
-    <!-- PIETY CHART JS-->
-    <script src="assets/plugins/peitychart/jquery.peity.min.js"></script>
-    <script src="assets/plugins/peitychart/peitychart.init.js"></script>
+    <!-- Start of Mobile Menu -->
+    <div class="mobile-menu-wrapper">
+        <div class="mobile-menu-overlay"></div>
+        <!-- End of .mobile-menu-overlay -->
 
-    <!-- SIDEBAR JS -->
-    <script src="assets/plugins/sidebar/sidebar.js"></script>
+        <a href="#" class="mobile-menu-close"><i class="close-icon"></i></a>
+        <!-- End of .mobile-menu-close -->
 
-    <!-- Perfect SCROLLBAR JS-->
-    <script src="assets/plugins/p-scroll/perfect-scrollbar.js"></script>
-    <script src="assets/plugins/p-scroll/pscroll.js"></script>
-    <script src="assets/plugins/p-scroll/pscroll-1.js"></script>
+        <div class="mobile-menu-container scrollable">
+            <form action="#" method="get" class="input-wrapper">
+                <input type="text" class="form-control" name="search" autocomplete="off" placeholder="Search"
+                    required />
+                <button class="btn btn-search" type="submit">
+                    <i class="w-icon-search"></i>
+                </button>
+            </form>
+            <!-- End of Search Form -->
+            <div class="tab">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a href="#main-menu" class="nav-link active">Main Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#categories" class="nav-link">Categories</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="main-menu">
+                    <ul class="mobile-menu">
+                        <li><a href="index.php">Home</a></li>
+                        <li>
+                            <a href="shop-banner-sidebar.html">Shop</a>
+                            <ul>
+                                <li>
+                                    <a href="#">Shop Pages</a>
+                                    <ul>
+                                        <li><a href="shop-banner-sidebar.html">Banner With Sidebar</a></li>
+                                        <li><a href="shop-boxed-banner.html">Boxed Banner</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Full Width Banner</a></li>
+                                        <li><a href="shop-horizontal-filter.html">Horizontal Filter<span
+                                                    class="tip tip-hot">Hot</span></a></li>
+                                        <li><a href="shop-off-canvas.html">Off Canvas Sidebar<span
+                                                    class="tip tip-new">New</span></a></li>
+                                        <li><a href="shop-infinite-scroll.html">Infinite Ajax Scroll</a></li>
+                                        <li><a href="shop-right-sidebar.html">Right Sidebar</a></li>
+                                        <li><a href="shop-both-sidebar.html">Both Sidebar</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Shop Layouts</a>
+                                    <ul>
+                                        <li><a href="shop-grid-3cols.html">3 Columns Mode</a></li>
+                                        <li><a href="shop-grid-4cols.html">4 Columns Mode</a></li>
+                                        <li><a href="shop-grid-5cols.html">5 Columns Mode</a></li>
+                                        <li><a href="shop-grid-6cols.html">6 Columns Mode</a></li>
+                                        <li><a href="shop-grid-7cols.html">7 Columns Mode</a></li>
+                                        <li><a href="shop-grid-8cols.html">8 Columns Mode</a></li>
+                                        <li><a href="shop-list.html">List Mode</a></li>
+                                        <li><a href="shop-list-sidebar.html">List Mode With Sidebar</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Product Pages</a>
+                                    <ul>
+                                        <li><a href="product-variable.html">Variable Product</a></li>
+                                        <li><a href="product-featured.html">Featured &amp; Sale</a></li>
+                                        <li><a href="product-accordion.html">Data In Accordion</a></li>
+                                        <li><a href="product-section.html">Data In Sections</a></li>
+                                        <li><a href="product-swatch.html">Image Swatch</a></li>
+                                        <li><a href="product-extended.html">Extended Info</a>
+                                        </li>
+                                        <li><a href="product-without-sidebar.html">Without Sidebar</a></li>
+                                        <li><a href="product-video.html">360<sup>o</sup> &amp; Video<span
+                                                    class="tip tip-new">New</span></a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Product Layouts</a>
+                                    <ul>
+                                        <li><a href="product-default.html">Default<span
+                                                    class="tip tip-hot">Hot</span></a></li>
+                                        <li><a href="product-vertical.html">Vertical Thumbs</a></li>
+                                        <li><a href="product-grid.html">Grid Images</a></li>
+                                        <li><a href="product-masonry.html">Masonry</a></li>
+                                        <li><a href="product-gallery.html">Gallery</a></li>
+                                        <li><a href="product-sticky-info.html">Sticky Info</a></li>
+                                        <li><a href="product-sticky-thumb.html">Sticky Thumbs</a></li>
+                                        <li><a href="product-sticky-both.html">Sticky Both</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="vendor-dokan-store.html">Vendor</a>
+                            <ul>
+                                <li>
+                                    <a href="#">Store Listing</a>
+                                    <ul>
+                                        <li><a href="vendor-dokan-store-list.html">Store listing 1</a></li>
+                                        <li><a href="vendor-wcfm-store-list.html">Store listing 2</a></li>
+                                        <li><a href="vendor-wcmp-store-list.html">Store listing 3</a></li>
+                                        <li><a href="vendor-wc-store-list.html">Store listing 4</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Vendor Store</a>
+                                    <ul>
+                                        <li><a href="vendor-dokan-store.html">Vendor Store 1</a></li>
+                                        <li><a href="vendor-wcfm-store-product-grid.html">Vendor Store 2</a></li>
+                                        <li><a href="vendor-wcmp-store-product-grid.html">Vendor Store 3</a></li>
+                                        <li><a href="vendor-wc-store-product-grid.html">Vendor Store 4</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="blog.html">Blog</a>
+                            <ul>
+                                <li><a href="blog.html">Classic</a></li>
+                                <li><a href="blog-listing.html">Listing</a></li>
+                                <li>
+                                    <a href="blog-grid.html">Grid</a>
+                                    <ul>
+                                        <li><a href="blog-grid-2cols.html">Grid 2 columns</a></li>
+                                        <li><a href="blog-grid-3cols.html">Grid 3 columns</a></li>
+                                        <li><a href="blog-grid-4cols.html">Grid 4 columns</a></li>
+                                        <li><a href="blog-grid-sidebar.html">Grid sidebar</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Masonry</a>
+                                    <ul>
+                                        <li><a href="blog-masonry-2cols.html">Masonry 2 columns</a></li>
+                                        <li><a href="blog-masonry-3cols.html">Masonry 3 columns</a></li>
+                                        <li><a href="blog-masonry-4cols.html">Masonry 4 columns</a></li>
+                                        <li><a href="blog-masonry-sidebar.html">Masonry sidebar</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Mask</a>
+                                    <ul>
+                                        <li><a href="blog-mask-grid.html">Blog mask grid</a></li>
+                                        <li><a href="blog-mask-masonry.html">Blog mask masonry</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="post-single.html">Single Post</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="about-us.html">Pages</a>
+                            <ul>
 
-    <!-- INTERNAL CHARTJS CHART JS-->
-    <script src="assets/plugins/chart/Chart.bundle.js"></script>
-    <script src="assets/plugins/chart/utils.js"></script>
+                                <li><a href="about-us.html">About Us</a></li>
+                                <li><a href="become-a-vendor.html">Become A Vendor</a></li>
+                                <li><a href="contact-us.html">Contact Us</a></li>
+                                <li><a href="login.html">Login</a></li>
+                                <li><a href="faq.html">FAQs</a></li>
+                                <li><a href="error-404.html">Error 404</a></li>
+                                <li><a href="coming-soon.html">Coming Soon</a></li>
+                                <li><a href="wishlist.html">Wishlist</a></li>
+                                <li><a href="cart.html">Cart</a></li>
+                                <li><a href="checkout.html">Checkout</a></li>
+                                <li><a href="my-account.html">My Account</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="elements.html">Elements</a>
+                            <ul>
+                                <li><a href="element-products.html">Products</a></li>
+                                <li><a href="element-titles.html">Titles</a></li>
+                                <li><a href="element-typography.html">Typography</a></li>
+                                <li><a href="element-categories.html">Product Category</a></li>
+                                <li><a href="element-buttons.html">Buttons</a></li>
+                                <li><a href="element-accordions.html">Accordions</a></li>
+                                <li><a href="element-alerts.html">Alert &amp; Notification</a></li>
+                                <li><a href="element-tabs.html">Tabs</a></li>
+                                <li><a href="element-testimonials.html">Testimonials</a></li>
+                                <li><a href="element-blog-posts.html">Blog Posts</a></li>
+                                <li><a href="element-instagrams.html">Instagrams</a></li>
+                                <li><a href="element-cta.html">Call to Action</a></li>
+                                <li><a href="element-vendors.html">Vendors</a></li>
+                                <li><a href="element-icon-boxes.html">Icon Boxes</a></li>
+                                <li><a href="element-icons.html">Icons</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="categories">
+                    <ul class="mobile-menu">
+                        <li>
+                            <a href="shop-fullwidth-banner.html">
+                                <i class="w-icon-tshirt2"></i>Fashion
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#">Women</a>
+                                    <ul>
+                                        <li><a href="shop-fullwidth-banner.html">New Arrivals</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Best Sellers</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Trending</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Clothing</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Shoes</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Bags</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Accessories</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Jewlery &
+                                                Watches</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Men</a>
+                                    <ul>
+                                        <li><a href="shop-fullwidth-banner.html">New Arrivals</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Best Sellers</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Trending</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Clothing</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Shoes</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Bags</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Accessories</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Jewlery &
+                                                Watches</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="shop-fullwidth-banner.html">
+                                <i class="w-icon-home"></i>Home & Garden
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#">Bedroom</a>
+                                    <ul>
+                                        <li><a href="shop-fullwidth-banner.html">Beds, Frames &
+                                                Bases</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Dressers</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Nightstands</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Kid's Beds &
+                                                Headboards</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Armoires</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Living Room</a>
+                                    <ul>
+                                        <li><a href="shop-fullwidth-banner.html">Coffee Tables</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Chairs</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Tables</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Futons & Sofa
+                                                Beds</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Cabinets &
+                                                Chests</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Office</a>
+                                    <ul>
+                                        <li><a href="shop-fullwidth-banner.html">Office Chairs</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Desks</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Bookcases</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">File Cabinets</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Breakroom
+                                                Tables</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Kitchen & Dining</a>
+                                    <ul>
+                                        <li><a href="shop-fullwidth-banner.html">Dining Sets</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Kitchen Storage
+                                                Cabinets</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Bashers Racks</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Dining Chairs</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Dining Room
+                                                Tables</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Bar Stools</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="shop-fullwidth-banner.html">
+                                <i class="w-icon-electronics"></i>Electronics
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#">Laptops &amp; Computers</a>
+                                    <ul>
+                                        <li><a href="shop-fullwidth-banner.html">Desktop
+                                                Computers</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Monitors</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Laptops</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Hard Drives &amp;
+                                                Storage</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Computer
+                                                Accessories</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">TV &amp; Video</a>
+                                    <ul>
+                                        <li><a href="shop-fullwidth-banner.html">TVs</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Home Audio
+                                                Speakers</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Projectors</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Media Streaming
+                                                Devices</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Digital Cameras</a>
+                                    <ul>
+                                        <li><a href="shop-fullwidth-banner.html">Digital SLR
+                                                Cameras</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Sports & Action
+                                                Cameras</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Camera Lenses</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Photo Printer</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Digital Memory
+                                                Cards</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Cell Phones</a>
+                                    <ul>
+                                        <li><a href="shop-fullwidth-banner.html">Carrier Phones</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Unlocked Phones</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Phone & Cellphone
+                                                Cases</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Cellphone
+                                                Chargers</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="shop-fullwidth-banner.html">
+                                <i class="w-icon-furniture"></i>Furniture
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#">Furniture</a>
+                                    <ul>
+                                        <li><a href="shop-fullwidth-banner.html">Sofas & Couches</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Armchairs</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Bed Frames</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Beside Tables</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Dressing Tables</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Lighting</a>
+                                    <ul>
+                                        <li><a href="shop-fullwidth-banner.html">Light Bulbs</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Lamps</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Celling Lights</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Wall Lights</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Bathroom
+                                                Lighting</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Home Accessories</a>
+                                    <ul>
+                                        <li><a href="shop-fullwidth-banner.html">Decorative
+                                                Accessories</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Candals &
+                                                Holders</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Home Fragrance</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Mirrors</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Clocks</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Garden & Outdoors</a>
+                                    <ul>
+                                        <li><a href="shop-fullwidth-banner.html">Garden
+                                                Furniture</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Lawn Mowers</a>
+                                        </li>
+                                        <li><a href="shop-fullwidth-banner.html">Pressure
+                                                Washers</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">All Garden
+                                                Tools</a></li>
+                                        <li><a href="shop-fullwidth-banner.html">Outdoor Dining</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="shop-fullwidth-banner.html">
+                                <i class="w-icon-heartbeat"></i>Healthy & Beauty
+                            </a>
+                        </li>
+                        <li>
+                            <a href="shop-fullwidth-banner.html">
+                                <i class="w-icon-gift"></i>Gift Ideas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="shop-fullwidth-banner.html">
+                                <i class="w-icon-gamepad"></i>Toy & Games
+                            </a>
+                        </li>
+                        <li>
+                            <a href="shop-fullwidth-banner.html">
+                                <i class="w-icon-ice-cream"></i>Cooking
+                            </a>
+                        </li>
+                        <li>
+                            <a href="shop-fullwidth-banner.html">
+                                <i class="w-icon-ios"></i>Smart Phones
+                            </a>
+                        </li>
+                        <li>
+                            <a href="shop-fullwidth-banner.html">
+                                <i class="w-icon-camera"></i>Cameras & Photo
+                            </a>
+                        </li>
+                        <li>
+                            <a href="shop-fullwidth-banner.html">
+                                <i class="w-icon-ruby"></i>Accessories
+                            </a>
+                        </li>
+                        <li>
+                            <a href="shop-banner-sidebar.html"
+                                class="font-weight-bold text-primary text-uppercase ls-25">
+                                View All Categories<i class="w-icon-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Mobile Menu -->
 
-    <!-- INTERNAL SELECT2 JS -->
-    <script src="assets/plugins/select2/select2.full.min.js"></script>
+    <!-- Start of Newsletter popup -->
+    <div class="newsletter-popup mfp-hide">
+        <div class="newsletter-content">
+            <h4 class="text-uppercase font-weight-normal ls-25">Get Up to<span class="text-primary">25% Off</span></h4>
+            <h2 class="ls-25">Sign up to Wolmart</h2>
+            <p class="text-light ls-10">Subscribe to the Wolmart market newsletter to
+                receive updates on special offers.</p>
+            <form action="#" method="get" class="input-wrapper input-wrapper-inline input-wrapper-round">
+                <input type="email" class="form-control email font-size-md" name="email" id="email2"
+                    placeholder="Your email address" required="">
+                <button class="btn btn-dark" type="submit">SUBMIT</button>
+            </form>
+            <div class="form-checkbox d-flex align-items-center">
+                <input type="checkbox" class="custom-checkbox" id="hide-newsletter-popup" name="hide-newsletter-popup"
+                    required="">
+                <label for="hide-newsletter-popup" class="font-size-sm text-light">Don't show this popup again.</label>
+            </div>
+        </div>
+    </div>
+    <!-- End of Newsletter popup -->
 
-    <!-- INTERNAL Data tables js-->
-    <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-    <script src="assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
-    <script src="assets/plugins/datatable/dataTables.responsive.min.js"></script>
+    <!-- Start of Quick View -->
+    <div class="product product-single product-popup">
+        <div class="row gutter-lg">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <div class="product-gallery product-gallery-sticky">
+                    <div class="swiper-container product-single-swiper swiper-theme nav-inner">
+                        <div class="swiper-wrapper row cols-1 gutter-no">
+                            <div class="swiper-slide">
+                                <figure class="product-image">
+                                    <img src="assets/images/products/popup/1-440x494.jpg"
+                                        data-zoom-image="assets/images/products/popup/1-800x900.jpg"
+                                        alt="Water Boil Black Utensil" width="800" height="900">
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure class="product-image">
+                                    <img src="assets/images/products/popup/2-440x494.jpg"
+                                        data-zoom-image="assets/images/products/popup/2-800x900.jpg"
+                                        alt="Water Boil Black Utensil" width="800" height="900">
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure class="product-image">
+                                    <img src="assets/images/products/popup/3-440x494.jpg"
+                                        data-zoom-image="assets/images/products/popup/3-800x900.jpg"
+                                        alt="Water Boil Black Utensil" width="800" height="900">
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure class="product-image">
+                                    <img src="assets/images/products/popup/4-440x494.jpg"
+                                        data-zoom-image="assets/images/products/popup/4-800x900.jpg"
+                                        alt="Water Boil Black Utensil" width="800" height="900">
+                                </figure>
+                            </div>
+                        </div>
+                        <button class="swiper-button-next"></button>
+                        <button class="swiper-button-prev"></button>
+                    </div>
+                    <div class="product-thumbs-wrap swiper-container" data-swiper-options="{
+                        'navigation': {
+                            'nextEl': '.swiper-button-next',
+                            'prevEl': '.swiper-button-prev'
+                        }
+                    }">
+                        <div class="product-thumbs swiper-wrapper row cols-4 gutter-sm">
+                            <div class="product-thumb swiper-slide">
+                                <img src="assets/images/products/popup/1-103x116.jpg" alt="Product Thumb" width="103"
+                                    height="116">
+                            </div>
+                            <div class="product-thumb swiper-slide">
+                                <img src="assets/images/products/popup/2-103x116.jpg" alt="Product Thumb" width="103"
+                                    height="116">
+                            </div>
+                            <div class="product-thumb swiper-slide">
+                                <img src="assets/images/products/popup/3-103x116.jpg" alt="Product Thumb" width="103"
+                                    height="116">
+                            </div>
+                            <div class="product-thumb swiper-slide">
+                                <img src="assets/images/products/popup/4-103x116.jpg" alt="Product Thumb" width="103"
+                                    height="116">
+                            </div>
+                        </div>
+                        <button class="swiper-button-next"></button>
+                        <button class="swiper-button-prev"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 overflow-hidden p-relative">
+                <div class="product-details scrollable pl-0">
+                    <h2 class="product-title">Electronics Black Wrist Watch</h2>
+                    <div class="product-bm-wrapper">
+                        <figure class="brand">
+                            <img src="assets/images/products/brand/brand-1.jpg" alt="Brand" width="102" height="48" />
+                        </figure>
+                        <div class="product-meta">
+                            <div class="product-categories">
+                                Category:
+                                <span class="product-category"><a href="#">Electronics</a></span>
+                            </div>
+                            <div class="product-sku">
+                                SKU: <span>MS46891340</span>
+                            </div>
+                        </div>
+                    </div>
 
-    <!-- INTERNAL APEXCHART JS -->
-    <script src="assets/js/apexcharts.js"></script>
-    <script src="assets/plugins/apexchart/irregular-data-series.js"></script>
+                    <hr class="product-divider">
 
-    <!-- INTERNAL Flot JS -->
-    <script src="assets/plugins/flot/jquery.flot.js"></script>
-    <script src="assets/plugins/flot/jquery.flot.fillbetween.js"></script>
-    <script src="assets/plugins/flot/chart.flot.sampledata.js"></script>
-    <script src="assets/plugins/flot/dashboard.sampledata.js"></script>
+                    <div class="product-price">$40.00</div>
 
-    <!-- INTERNAL Vector js -->
-    <script src="assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+                    <div class="ratings-container">
+                        <div class="ratings-full">
+                            <span class="ratings" style="width: 80%;"></span>
+                            <span class="tooltiptext tooltip-top"></span>
+                        </div>
+                        <a href="#" class="rating-reviews">(3 Reviews)</a>
+                    </div>
 
-    <!-- SIDE-MENU JS-->
-    <script src="assets/plugins/sidemenu/sidemenu.js"></script>
+                    <div class="product-short-desc">
+                        <ul class="list-type-check list-style-none">
+                            <li>Ultrices eros in cursus turpis massa cursus mattis.</li>
+                            <li>Volutpat ac tincidunt vitae semper quis lectus.</li>
+                            <li>Aliquam id diam maecenas ultricies mi eget mauris.</li>
+                        </ul>
+                    </div>
 
-	<!-- TypeHead js -->
-	<script src="assets/plugins/bootstrap5-typehead/autocomplete.js"></script>
-    <script src="assets/js/typehead.js"></script>
+                    <hr class="product-divider">
 
-    <!-- INTERNAL INDEX JS -->
-    <script src="assets/js/index1.js"></script>
+                    <div class="product-form product-variation-form product-color-swatch">
+                        <label>Color:</label>
+                        <div class="d-flex align-items-center product-variations">
+                            <a href="#" class="color" style="background-color: #ffcc01"></a>
+                            <a href="#" class="color" style="background-color: #ca6d00;"></a>
+                            <a href="#" class="color" style="background-color: #1c93cb;"></a>
+                            <a href="#" class="color" style="background-color: #ccc;"></a>
+                            <a href="#" class="color" style="background-color: #333;"></a>
+                        </div>
+                    </div>
+                    <div class="product-form product-variation-form product-size-swatch">
+                        <label class="mb-1">Size:</label>
+                        <div class="flex-wrap d-flex align-items-center product-variations">
+                            <a href="#" class="size">Small</a>
+                            <a href="#" class="size">Medium</a>
+                            <a href="#" class="size">Large</a>
+                            <a href="#" class="size">Extra Large</a>
+                        </div>
+                        <a href="#" class="product-variation-clean">Clean All</a>
+                    </div>
 
-    <!-- Color Theme js -->
-    <script src="assets/js/themeColors.js"></script>
+                    <div class="product-variation-price">
+                        <span></span>
+                    </div>
 
-    <!-- CUSTOM JS -->
-    <script src="assets/js/custom.js"></script>
+                    <div class="product-form">
+                        <div class="product-qty-form">
+                            <div class="input-group">
+                                <input class="quantity form-control" type="number" min="1" max="10000000">
+                                <button class="quantity-plus w-icon-plus"></button>
+                                <button class="quantity-minus w-icon-minus"></button>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-cart">
+                            <i class="w-icon-cart"></i>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
 
-    <!-- Custom-switcher -->
-    <script src="assets/js/custom-swicher.js"></script>
+                    <div class="social-links-wrapper">
+                        <div class="social-links">
+                            <div class="social-icons social-no-color border-thin">
+                                <a href="#" class="social-icon social-facebook w-icon-facebook"></a>
+                                <a href="#" class="social-icon social-twitter w-icon-twitter"></a>
+                                <a href="#" class="social-icon social-pinterest fab fa-pinterest-p"></a>
+                                <a href="#" class="social-icon social-whatsapp fab fa-whatsapp"></a>
+                                <a href="#" class="social-icon social-youtube fab fa-linkedin-in"></a>
+                            </div>
+                        </div>
+                        <span class="divider d-xs-show"></span>
+                        <div class="product-link-wrapper d-flex">
+                            <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"><span></span></a>
+                            <a href="#"
+                                class="btn-product-icon btn-compare btn-icon-left w-icon-compare"><span></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Quick view -->
 
-    <!-- Switcher js -->
-    <script src="assets/switcher/js/switcher.js"></script>
+    <!-- Plugin JS File -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/jquery.plugin/jquery.plugin.min.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/zoom/jquery.zoom.js"></script>
+    <script src="assets/vendor/jquery.countdown/jquery.countdown.min.js"></script>
+    <script src="assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="assets/vendor/skrollr/skrollr.min.js"></script>
 
-</body>
+    <!-- Swiper JS -->
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="assets/js/main.min.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"ecd4920e43e14654b78e65dbf8311922","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9daa04e618a24813',t:'MTc3MzIyNjQ0NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 
 </html>

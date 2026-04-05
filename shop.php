@@ -1,21 +1,8 @@
-<?php
+<?php 
 session_start();
-include("db_conn.php");
+include('db_conn.php'); 
 ?>
 
-<?php
-if(isset($_REQUEST['uin'])){
-    $sql = "SELECT * FROM product_table WHERE uin='$_REQUEST[uin]' LIMIT 1";
-    $result = mysqli_query($conn, $sql);
-    $product_row = mysqli_fetch_array($result);
-    $uin = $product_row['uin'];
-    $productname = $product_row['productname'];
-    $quantity = $product_row['quantity'];
-    $category = $product_row['category'];
-    $sellingprice = $product_row['sellingprice'];
-    $productimage = $product_row['productimage'];
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,9 +10,9 @@ if(isset($_REQUEST['uin'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <title>Products || DEE MART</title>
+    <title>Shop Now || DEE MART</title>
 
-    <meta name="keywords" content="">
+    <meta name="keywords" content=""/>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -57,13 +44,10 @@ if(isset($_REQUEST['uin'])){
     <link rel="stylesheet" type="text/css" href="assets/vendor/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="assets/vendor/animate/animate.min.css">
 
-    <!-- Plugin CSS -->
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendor/nouislider/nouislider.min.css">
     <link rel="stylesheet" type="text/css" href="assets/vendor/magnific-popup/magnific-popup.min.css">
-    <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/vendor/photoswipe/photoswipe.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/vendor/photoswipe/default-skin/default-skin.min.css">
-    <!-- Swiper's CSS -->
-    <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css">
 
     <!-- Default CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
@@ -71,415 +55,171 @@ if(isset($_REQUEST['uin'])){
 
 <body>
     <div class="page-wrapper">
-        <!-- Start of Header -->
+
+        <h1 class="d-none">DEE MART - Multipurpose E-Commerce Web Application</h1>
+
         <?php
         include("header.php");
         ?>
-        <!-- End of Header -->
-
 
         <!-- Start of Main -->
-        <main class="main mb-10 pb-1">
+        <main class="main">
             <!-- Start of Breadcrumb -->
-            <nav class="breadcrumb-nav container">
-                <ul class="breadcrumb bb-no">
-                    <li><a href="javascript:history.back()">Home</a></li>
-                    <li>Products</li>
-                    <li><?php echo $product_row['productname']; ?></li>
-                </ul>
-
+            <nav class="breadcrumb-nav">
+                <div class="container">
+                    <ul class="breadcrumb bb-no">
+                        <li><a href="javascript:history.back()">Home</a></li>
+                        <li>Shop Now</li>
+                    </ul>
+                </div>
             </nav>
             <!-- End of Breadcrumb -->
 
             <!-- Start of Page Content -->
-            <div class="page-content">
+            <div class="page-content mb-10">
                 <div class="container">
-                    <div class="row gutter-lg">
+
+                   
+                    <!-- Start of Shop Content -->
+                    <div class="shop-content">
+                        
+                        <!-- Start of Shop Main Content -->
                         <div class="main-content">
-                            <div class="product product-single row">
-                                <div class="col-md-6 mb-6">
-                                    <div class="product-gallery product-gallery-sticky">
-                                        <div class="swiper-container product-single-swiper swiper-theme nav-inner" data-swiper-options="{
-                                            'navigation': {
-                                                'nextEl': '.swiper-button-next',
-                                                'prevEl': '.swiper-button-prev'
-                                            }
-                                        }">
-                                            <div class="swiper-wrapper row cols-1 gutter-no">
-                                                                    <?php
-     $sql = "SELECT * FROM `product_table` WHERE uin='$_REQUEST[uin]' ";
-     $result = mysqli_query($conn, $sql);
-     if (mysqli_num_rows($result) > 0) {
-         while ($row = mysqli_fetch_array($result)) {
-     ?>
-                                                <div class="swiper-slide">
-                                                    <figure class="product-image">
-                                                        <img src="../dashboard/productupload/<?php echo $row['productimage']; ?>"
-                                                            data-zoom-image="/dashboard/productupload/<?php echo $row['productimage']; ?>"
-                                                         width="800" height="900">
-                                                    </figure>
-                                                </div>
+                            <?php
+// ===============================
+// PAGINATION SETTINGS
+// ===============================
+$limit = 30; // Products per page
 
-                                                <?php }} ?>
-                                               
-                                               
-                                                
-                                                
-                                            </div>
-                                            <button class="swiper-button-next"></button>
-                                            <button class="swiper-button-prev"></button>
-                                            <a href="#" class="product-gallery-btn product-image-full"><i class="w-icon-zoom"></i></a>
-                                        </div>
-                                        
-                                        <div class="product-thumbs-wrap swiper-container" data-swiper-options="{
-                                            'navigation': {
-                                                'nextEl': '.swiper-button-next',
-                                                'prevEl': '.swiper-button-prev'
-                                            }
-                                        }">
-                                            <div class="product-thumbs swiper-wrapper row cols-4 gutter-sm">
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-                                            <?php
-     $sql = "SELECT * FROM `product_table` WHERE uin='$_REQUEST[uin]' ";
-     $result = mysqli_query($conn, $sql);
-     if (mysqli_num_rows($result) > 0) {
-         while ($row = mysqli_fetch_array($result)) {
-     ?>
-                                                <div class="product-thumb swiper-slide">
-                                                    <img src="../dashboard/productupload/<?php echo $row['productimage']; ?>"
-                                                        alt="Product Thumb" width="800" height="900">
-                                                </div>
-                                                <?php }} ?>
-                                                
-                                                 
-                                                
+if ($page < 1) {
+    $page = 1;
+}
+
+$offset = ($page - 1) * $limit;
+
+
+// ===============================
+// GET PRODUCTS
+// ===============================
+$sql = $sql = "SELECT * FROM `product_table` ORDER BY `id` ASC LIMIT $limit OFFSET $offset";
+
+$result = mysqli_query($conn, $sql);
+?>
+
+                            <div class="product-wrapper row cols-md-3 cols-sm-2 cols-2">
+
+                            <?php
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+?>
+
+                                <div class="product-wrap">
+                                    <div class="product text-center">
+                                        <figure class="product-media">
+                                            <a href="product.php?uin=<?php echo $row['uin']; ?>">
+                                                <img src="../dashboard/productupload/<?php echo $row['productimage'];?>" alt="Product" width="300"
+                                                    height="338" />
+                                            </a>
+
+                                            <div class="product-action-horizontal">
+                                               
+                                                <a href="product?uin=<?php echo $row['uin']; ?>" class="btn-product-icon btn-quickview w-icon-search"
+                                                    title="Quick View"></a>
                                             </div>
-                                            <button class="swiper-button-next"></button>
-                                            <button class="swiper-button-prev"></button>
+                                        </figure>
+
+                                        <div class="product-details">
+                                            <div class="product-cat">
+                                                <a href="cat?category=<?php echo urlencode($row['category']); ?>"><?php echo $row['category']; ?></a>
+                                            </div>
+
+                                            <h3 class="product-name">
+                        <a href="product?uin=<?php echo $row['uin']; ?>">
+                            <?php echo $row['productname']; ?>
+                        </a>
+
+                    </h3>
+                                            
+
+                                            <div class="product-pa-wrapper">
+                                                <div class="product-price">
+                                                  &#8358;
+                                                  <?php
+                                                  echo number_format($row['sellingprice'], 2); ?>  
+                                                    
+                                                </div>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-6 mb-4 mb-md-6">
-                                    <div class="product-details" data-sticky-options="{'minWidth': 767}">
-                                        <h1 class="product-title"><?php echo $product_row['productname']; ?></h1>
-                                        <div class="product-bm-wrapper">
 
-                                            <div class="product-meta">
-                                                <div class="product-categories">
-                                                    Category:
-                                                    <span class="product-category"><a href="category?category=<?php echo $product_row['category']; ?>"><?php echo $product_row['category']; ?></a></span>
-                                                </div>
-
-                                                <div class="product-sku">
-                                                    SKU: <span><?php echo $product_row['uin']; ?></span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <hr class="product-divider">
-
-                                        <div class="product-price"><ins class="new-price">
-                                            &#8358;
-                                            <?php
-        
-            echo number_format($product_row['sellingprice'], 2);
-        
-        ?>
-                                        </ins></div>
-
-                                        <div class="ratings-container">
-                                            <div class="ratings-full">
-                                                <span class="ratings" style="width: 80%;"></span>
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div>
-                                            <a href="#product-tab-reviews" class="rating-reviews scroll-to">(3
-                                                Reviews)</a>
-                                        </div>
-
-                                        <div class="product-short-desc">
-                                            <ul class="list-type-check list-style-none">
-                                                <?php 
-$lowLevel = $product_row['lowlevel'];
-$quantity = $product_row['quantity'];
+                                <?php
+    }
+} else {
+    echo "<p>No products found.</p>";
+}
 ?>
-                                                <li>
-                                                 <?php if ($quantity > $lowLevel) : ?>
-        <span style="color: green;"><b>Available In Stock</b></span>
-    <?php elseif ($quantity > 0) : ?>
-        <span style="color: red;"><b>Only <?php echo $quantity; ?> left in stock</b></span>
-    <?php else : ?>
-        <span style="color: red;"><b>Out of Stock</b></span>
-    <?php endif; ?>   
-                                                </li>
-                                                
-                                            </ul>
-                                        </div>
 
-                                        <hr class="product-divider">
-
-                                        <form method="post" action="addtocart">
-
-    <input type="hidden" name="uin" readonly value="<?php echo $product_row['uin'] ?>">
-    <input type="hidden" name="id" readonly value="<?php echo $product_row['id'] ?>">
-    <!-- <input type="hidden" name="user" readonly value="<?php //echo $_SESSION['user_id'] ?>"> -->
-    <!-- <input type="hidden" name="business_name" readonly value="<?php //echo $setting_row['business_name'] ?>"> -->
-   <input type="hidden" name="selling_price" value="<?php
-
-    echo $product_row['sellingprice'];
-
-?>">
-
-                                        <div class="fix-bottom product-sticky-content sticky-content">
-                                            <div class="product-form container">
-                                                <div class="product-qty-form">
-                                                    <div class="input-group">
-                                                        <input class="quantity form-control" type="number" min="1"
-                                                            max="10000000">
-                                                        <button class="quantity-plus w-icon-plus"></button>
-                                                        <button class="quantity-minus w-icon-minus"></button>
-                                                    </div>
-                                                </div>
-                                                <button class="btn btn-primary btn-cart">
-                                                    <i class="w-icon-cart"></i>
-                                                    <span>Add to Cart</span>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        </form>
-
-                                        <div class="social-links-wrapper">
-                                            <div class="social-links">
-                                                <div class="social-icons social-no-color border-thin">
-
-                                               
-                                                    <a href="#" class="social-icon social-twitter w-icon-twitter"></a>
-                                                    
-                                                    <a href="#"
-                                                        class="social-icon social-youtube fab fa-linkedin-in"></a>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                           
-                            <div class="tab tab-nav-boxed tab-nav-underline product-tabs">
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li class="nav-item">
-                                        <a href="#product-tab-description" class="nav-link active">Product Description</a>
-                                    </li>  
-                                </ul>
-
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="product-tab-description">
-                                        <div class="row mb-4">
-                                            <div class="col-md-6 mb-5">
-                                                
-                                                <p class="mb-4">
-                                                    <?php echo $product_row['description']; ?>
-                                                </p>
-
-                                                
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
                             </div>
 
-                            
-                            <section class="related-product-section">
-                                <div class="title-link-wrapper mb-4">
-                                    <h4 class="title">Related Products</h4>
-                                    <a href="#" class="btn btn-dark btn-link btn-slide-right btn-icon-right">More
-                                        Products<i class="w-icon-long-arrow-right"></i></a>
-                                </div>
-                                <div class="swiper-container swiper-theme" data-swiper-options="{
-                                    'spaceBetween': 20,
-                                    'slidesPerView': 2,
-                                    'breakpoints': {
-                                        '576': {
-                                            'slidesPerView': 3
-                                        },
-                                        '768': {
-                                            'slidesPerView': 4
-                                        },
-                                        '992': {
-                                            'slidesPerView': 3
-                                        }
-                                    }
-                                }">
-                                    <div class="swiper-wrapper row cols-lg-3 cols-md-4 cols-sm-3 cols-2">
+                            <?php
+// ===============================
+// PAGINATION LINKS
+// ===============================
+$count_sql = "SELECT COUNT(*) AS total FROM `product_table` ";
 
-                                    <?php
-                                    $sql = "SELECT * FROM `product_table` WHERE category='$category' ORDER BY `id` ASC";
-     $result = mysqli_query($conn, $sql);
-     if (mysqli_num_rows($result) > 0) {
-         while ($row = mysqli_fetch_array($result)) {
-                                    ?>
+$count_result = mysqli_query($conn, $count_sql);
+$count_row = mysqli_fetch_assoc($count_result);
 
-                                        <div class="swiper-slide product">
-                                            <figure class="product-media">
-                                                <a href="product?uin=<?php echo $row['uin']; ?>">
-                                                    <img src="../dashboard/productupload/<?php echo $row['productimage']; ?>" alt="Product"
-                                                        width="300" height="338" />
-                                                </a>
-                                                
-                                                <div class="product-action">
-                                                    <a href="product?uin=<?php echo $row['uin']; ?>" class="btn-product btn-quickview" title="Quick View">Quick
-                                                        View</a>
-                                                </div>
-                                            </figure>
+$total_products = $count_row['total'];
+$total_pages = ceil($total_products / $limit);
 
-                                            <div class="product-details">
-                                                <h4 class="product-name"><a href="../dashboard/productupload/<?php echo $row['productimage']; ?>"><?php echo $row['productname']; ?></a></h4>
+if ($total_pages > 1) {
 
-                                                <div class="ratings-container">
-                                                    <div class="ratings-full">
-                                                        <span class="ratings" style="width: 100%;"></span>
-                                                        <span class="tooltiptext tooltip-top"></span>
-                                                    </div>
+    echo '<div class="pagination" style="margin-top:30px;">';
 
-                                                    <a href="product-default" class="rating-reviews"></a>
-                                                </div>
+    // Previous Button
+    if ($page > 1) {
+        echo "<a href='?page=".($page - 1)."' style='margin-right:10px;'>« Prev</a>";
+    }
 
-                                                <div class="product-pa-wrapper">
-                                                    <div class="product-price">
-                                                        &#8358;
-        <?php
-            echo number_format($row['sellingprice'], 2);
-        ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+    // Page Numbers
+    for ($i = 1; $i <= $total_pages; $i++) {
 
-                                        <?php }} ?>
+        if ($i == $page) {
+            echo "<strong style='margin:0 5px;'>$i</strong>";
+        } else {
+            echo "<a href='?page=$i' style='margin:0 5px;'>$i</a>";
+        }
+    }
 
-                                        
+    // Next Button
+    if ($page < $total_pages) {
+        echo "<a href='?page=".($page + 1)."' style='margin-left:10px;'>Next »</a>";
+    }
 
-                                    </div>
-                                </div>
-                            </section>
+    echo '</div>';
+}
+?>               
+
                         </div>
-                        <!-- End of Main Content -->
-
-                        <aside class="sidebar product-sidebar sidebar-fixed right-sidebar sticky-sidebar-wrapper">
-                            <div class="sidebar-overlay"></div>
-                            <a class="sidebar-close" href="#"><i class="close-icon"></i></a>
-                            <a href="#" class="sidebar-toggle d-flex d-lg-none"><i class="fas fa-chevron-left"></i></a>
-                            <div class="sidebar-content scrollable">
-                                <div class="sticky-sidebar">
-                                    <div class="widget widget-icon-box mb-6">
-                                        <div class="icon-box icon-box-side">
-                                            <span class="icon-box-icon text-dark">
-                                                <i class="w-icon-truck"></i>
-                                            </span>
-                                            <div class="icon-box-content">
-                                                <h4 class="icon-box-title">Shipping & Delivery</h4>
-                                                <p>Delivery anywhere in the country.</p>
-                                            </div>
-                                        </div>
-                                        <div class="icon-box icon-box-side">
-                                            <span class="icon-box-icon text-dark">
-                                                <i class="w-icon-bag"></i>
-                                            </span>
-                                            <div class="icon-box-content">
-                                                <h4 class="icon-box-title">Secure Payment</h4>
-                                                <p>We ensure secure payment always.</p>
-                                            </div>
-                                        </div>
-                                        <div class="icon-box icon-box-side">
-                                            <span class="icon-box-icon text-dark">
-                                                <i class="w-icon-money"></i>
-                                            </span>
-                                            <div class="icon-box-content">
-                                                <h4 class="icon-box-title">Quick Payment Confirmation</h4>
-                                                <p>All payments get confirmed in seconds.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End of Widget Icon Box -->
-
-
-                                    <div class="widget widget-products">
-                                        <div class="title-link-wrapper mb-2">
-                                            <h4 class="title title-link font-weight-bold">More Products</h4>
-                                        </div>
-
-                                        <div class="swiper nav-top">
-                                            <div class="swiper-container swiper-theme nav-top" data-swiper-options = "{
-                                                'slidesPerView': 1,
-                                                'spaceBetween': 20,
-                                                'navigation': {
-                                                    'prevEl': '.swiper-button-prev',
-                                                    'nextEl': '.swiper-button-next'
-                                                }
-                                            }">
-                                                <div class="swiper-wrapper">
-                                                    <div class="widget-col swiper-slide">
-
-                                                        <?php
-     $sql = "SELECT * FROM `product_table` ORDER BY `id` DESC LIMIT 0, 5";
-     $result = mysqli_query($conn, $sql);
-     if (mysqli_num_rows($result) > 0) {
-         while ($row = mysqli_fetch_array($result)) {
-     ?>
-                                                        <div class="product product-widget">
-                                                            <figure class="product-media">
-                                                                <a href="product?uin=<?php echo $row['uin']; ?>">
-                                                                    <img src="../dashboard/productupload/<?php echo $row['productimage']; ?>" alt="Product"
-                                                                        width="100" height="113" />
-                                                                </a>
-                                                            </figure>
-                                                            
-                                                            <div class="product-details">
-                                                                <h4 class="product-name">
-                                                                    <a href="product?uin=<?php echo $row['uin']; ?>"><?php echo $row['productname']; ?></a>
-                                                                </h4>
-                                                                
-                                                                <div class="ratings-container">
-                                                                    <div class="ratings-full">
-                                                                        <span class="ratings" style="width: 100%;"></span>
-                                                                        <span class="tooltiptext tooltip-top"></span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="product-price">
-                                                                    <?php
-            echo number_format($row['sellingprice'], 2);
-        ?>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <?php }} ?>
-
-                                                    </div>
-                                                    
-                                                </div>
-
-                                                <button class="swiper-button-next"></button>
-                                                <button class="swiper-button-prev"></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </aside>
-                        <!-- End of Sidebar -->
+                        <!-- End of Shop Main Content -->
                     </div>
+
+                    <!-- End of Shop Content -->
                 </div>
             </div>
             <!-- End of Page Content -->
         </main>
         <!-- End of Main -->
 
-        <!-- Start of Footer -->
+
+
+
         <footer class="footer appear-animate" data-animation-options="{
             'name': 'fadeIn'
         }">
@@ -516,7 +256,7 @@ $quantity = $product_row['quantity'];
                     <div class="row">
                         <div class="col-lg-4 col-sm-6">
                             <div class="widget widget-about">
-                                <a href="demo1.html" class="logo-footer">
+                                <a href="index.php" class="logo-footer">
                                     <img src="assets/images/logo_footer.png" alt="logo-footer" width="144"
                                         height="45" />
                                 </a>
@@ -656,7 +396,7 @@ $quantity = $product_row['quantity'];
                 </div>
                 <div class="footer-bottom">
                     <div class="footer-left">
-                        <p class="copyright">Copyright © <script>document.write(new Date().getFullYear())</script>. DEE MART. All Rights Reserved.</p>
+                        <p class="copyright">Copyright © 2021 Wolmart Store. All Rights Reserved.</p>
                     </div>
                     <div class="footer-right">
                         <span class="payment-label mr-lg-8">We're using safe payment for</span>
@@ -673,7 +413,7 @@ $quantity = $product_row['quantity'];
 
     <!-- Start of Sticky Footer -->
     <div class="sticky-footer sticky-content fix-bottom">
-        <a href="demo1.html" class="sticky-link active">
+        <a href="index.php" class="sticky-link active">
             <i class="w-icon-home"></i>
             <p>Home</p>
         </a>
@@ -762,6 +502,7 @@ $quantity = $product_row['quantity'];
             </form>
         </div>
     </div>
+    <!-- End of Sticky Footer -->
 
     <!-- Start of Scroll Top -->
     <a id="scroll-top" class="scroll-top" href="#top" title="Top" role="button"> <i class="w-icon-angle-up"></i> <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70"> <circle id="progress-indicator" fill="transparent" stroke="#000000" stroke-miterlimit="10" cx="35" cy="35" r="34" style="stroke-dasharray: 16.4198, 400;"></circle> </svg> </a>
@@ -797,7 +538,7 @@ $quantity = $product_row['quantity'];
             <div class="tab-content">
                 <div class="tab-pane active" id="main-menu">
                     <ul class="mobile-menu">
-                        <li><a href="demo1.html">Home</a></li>
+                        <li><a href="index.php">Home</a></li>
                         <li>
                             <a href="shop-banner-sidebar.html">Shop</a>
                             <ul>
@@ -1232,56 +973,6 @@ $quantity = $product_row['quantity'];
     </div>
     <!-- End of Mobile Menu -->
 
-    <!-- Root element of PhotoSwipe. Must have class pswp -->
-    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-        <!-- Background of PhotoSwipe. It's a separate element as animating opacity is faster than rgba(). -->
-        <div class="pswp__bg"></div>
-
-        <!-- Slides wrapper with overflow:hidden. -->
-        <div class="pswp__scroll-wrap">
-
-            <!-- Container that holds slides.
-			PhotoSwipe keeps only 3 of them in the DOM to save memory.
-			Don't modify these 3 pswp__item elements, data is added later on. -->
-            <div class="pswp__container">
-                <div class="pswp__item"></div>
-                <div class="pswp__item"></div>
-                <div class="pswp__item"></div>
-            </div>
-
-            <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-            <div class="pswp__ui pswp__ui--hidden">
-
-                <div class="pswp__top-bar">
-
-                    <!--  Controls are self-explanatory. Order can be changed. -->
-
-                    <div class="pswp__counter"></div>
-
-                    <button class="pswp__button pswp__button--close" aria-label="Close (Esc)"></button>
-                    <button class="pswp__button pswp__button--zoom" aria-label="Zoom in/out"></button>
-
-                    <div class="pswp__preloader">
-                        <div class="loading-spin"></div>
-                    </div>
-                </div>
-
-                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                    <div class="pswp__share-tooltip"></div>
-                </div>
-
-                <button class="pswp__button--arrow--left" aria-label="Previous (arrow left)"></button>
-                <button class="pswp__button--arrow--right" aria-label="Next (arrow right)"></button>
-
-                <div class="pswp__caption">
-                    <div class="pswp__caption__center"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End of PhotoSwipe -->
-
     <!-- Start of Quick View -->
     <div class="product product-single product-popup">
         <div class="row gutter-lg">
@@ -1455,20 +1146,17 @@ $quantity = $product_row['quantity'];
     <!-- Plugin JS File -->
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/sticky/sticky.js"></script>
-    <script src="assets/vendor/jquery.plugin/jquery.plugin.min.js"></script>
+    <script src="assets/vendor//jquery.plugin/jquery.plugin.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/nouislider/nouislider.min.js"></script>
+    <script src="assets/vendor/jquery.countdown/jquery.countdown.min.js"></script>
     <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="assets/vendor/zoom/jquery.zoom.js"></script>
-    <script src="assets/vendor/photoswipe/photoswipe.js"></script>
-    <script src="assets/vendor/photoswipe/photoswipe-ui-default.js"></script>
+    <script src="assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-    <!-- Swiper JS -->
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-    <!-- Main JS File -->
+    <!-- Main JS -->
     <script src="assets/js/main.min.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9da9eb234f7662f4',t:'MTc3MzIyNTM5MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"ecd4920e43e14654b78e65dbf8311922","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9da9ebcbff3c62f4',t:'MTc3MzIyNTQxNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"ecd4920e43e14654b78e65dbf8311922","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 
 </html>
