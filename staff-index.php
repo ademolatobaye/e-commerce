@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <title>DEE MART - REGISTER EMAIL</title>
+    <title>DEE MART - STAFF REGISTRATION</title>
 
     <meta name="description" content="">
     <meta name="author" content="">
@@ -63,7 +63,7 @@ session_start();
                 <div class="container">
                     <ul class="breadcrumb">
                         <li><a href="../frontend/index.php">Home</a></li>
-                        <li>Register Account</li>
+                        <li>Staff Registration</li>
                     </ul>
                 </div>
             </nav>
@@ -76,60 +76,59 @@ session_start();
                         <div class="tab tab-nav-boxed tab-nav-center tab-nav-underline">
                             <ul class="nav nav-tabs text-uppercase" role="tablist">
                                 <li class="nav-item">
-                                    <a href="#sign-up" class="nav-link active">Register An Account</a>
+                                    <a href="#sign-up" class="nav-link active">Staff Registration</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="sign-up">
-                                    <form method="post">
+                                    <form id="forgotForm" method="post">
+
                                         <?php
                                         include("db_conn.php");
                                         date_default_timezone_set("Africa/Lagos");
                                         $OTP =rand(1000,9999);
-                                        $rand =rand(1000,9999);
                                         $_SESSION['otp_time'] = time();
-                                        $today =date("dmy");
-                                        $customer_uin = "DEE" . $rand. $today;
-                                        $date = date("Y-m-d");
+                                        $rand =rand(1000,9999);
+                                        $today =date("dmyhis");
+                                        $UIN = "REG" . $rand. $today;
                                         error_reporting(E_ALL);
-                                        if(isset($_REQUEST["continue"])){
-                                            $customer_email =trim(addslashes($_REQUEST["customer_email"]));
-                                            $_SESSION["customer_email"] = $customer_email;
+                                        if(isset($_REQUEST["submit"])){
+                                            $email =trim(addslashes($_REQUEST["email"]));
+                                            $_SESSION["email"] = $email;
 
                                             // CHECKING FOR DUPLICATE RECORD
-                                            $check = mysqli_query($conn, "SELECT * FROM customertable WHERE customer_email='$customer_email'");
+                                            $check = mysqli_query($conn, "SELECT * FROM stafftable WHERE email='$email'");
                                             $checkrows = mysqli_num_rows($check);
 
                                             if($checkrows > 0){
                                                 echo "<script>alert('Email already exists.')</script>";
                                             } else {
                                                 // INSERTING EMAIL AND OTP INTO DATABASE
-                                                $sql = "INSERT INTO customertable(customer_email, customer_uin, otp, `status`, `date`) VALUES('$customer_email', '$customer_uin', '$OTP', 'Pending', '$date')";
+                                                $sql = "INSERT INTO stafftable(email, uin, otp, `status`) VALUES('$email', '$UIN', '$OTP', 'Pending')";
                                                 mysqli_query($conn, $sql) or die(mysqli_error($conn));
                                                 $num = mysqli_insert_id($conn);
                                                 if(mysqli_affected_rows($conn)!= 1){
                                                     $message = "Error inserting record into database.";
                                                 }
 
-                                                echo "<script>alert('An OTP has been sent to $customer_email. Kindly check your email to verify your account.');
-                                                window.location.href= 'user-otp.php'</script>";
+                                                echo "<script>alert('An OTP has been sent to $email. Kindly check your email to verify your account.');
+                                                window.location.href= 'staff-otp.php'</script>";
                                             }
                                         }
                                         ?>
 
-
-                                        <div class="form-group mb-5">
+                                        <div class="form-group mb-4">
                                             <label>Email Address *</label>
-                                            <input type="email" class="form-control" name="customer_email" id="emailAddress" required placeholder="Enter your email address">
+                                            <input type="email" class="form-control" name="email" id="emailAddress" required placeholder="Enter your email address">
                                         </div>
 
-                                        <input type="hidden" name="uin" value="<?php echo $customer_uin;?>">
+                                        <input type="hidden" name="uin" value="<?php echo $UIN;?>">
                                         <input type="hidden" name="otp" value="<?php echo $OTP;?>">
-                                        <input type="hidden" name="date" value="<?php echo $date;?>">
-                                        <button type="submit" name="continue" class="btn btn-primary w-100">Continue</button>
+
+                                        <button type="submit" name="submit" class="btn btn-primary w-100 mt-4">Continue</button>
                                     </form>
-                                    
-                                    <p class="text-center mt-4">Have an account already? <a href="user-login.php" class="text-primary">Sign in</a></p>
+
+                                    <p class="text-center mt-4">Have an account already? <a href="staff-login.php" class="text-primary">Sign In</a></p>
                                 </div>
                             </div>
                         </div>
