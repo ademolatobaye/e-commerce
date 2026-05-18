@@ -1,6 +1,6 @@
 <?php
-session_start();
 include('db_conn.php');
+include('customer-session-check.php');
 date_default_timezone_set('Africa/Lagos');
 
 $timeout_duration = 600;
@@ -59,46 +59,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_account'])) {
         $email_check = mysqli_query($conn, "SELECT customer_id FROM customertable WHERE customer_email = '$new_email' LIMIT 1");
         if (mysqli_num_rows($email_check) > 0) {
             $update_msg = '<div class="alert alert-danger">Email already in use by another account.</div>';
-            goto skip_update;
         }
     }
 
-    // Password change logic
-    $password_sql = '';
-    if (!empty($cur_password)) {
-        $cur_escaped = mysqli_real_escape_string($conn, $cur_password);
-        $pass_check = mysqli_query($conn, "SELECT customer_id FROM customertable WHERE customer_email = '$session_email' AND password = PASSWORD('$cur_escaped') LIMIT 1");
-        if (mysqli_num_rows($pass_check) === 0) {
-            $update_msg = '<div class="alert alert-danger">Current password is incorrect.</div>';
-            goto skip_update;
-        }
-        if ($new_password !== $conf_password) {
-            $update_msg = '<div class="alert alert-danger">New passwords do not match.</div>';
-            goto skip_update;
-        }
-        if (strlen($new_password) < 6) {
-            $update_msg = '<div class="alert alert-danger">New password must be at least 6 characters.</div>';
-            goto skip_update;
-        }
-        $new_escaped = mysqli_real_escape_string($conn, $new_password);
-        $password_sql = ", password = PASSWORD('$new_escaped')";
-    }
-
-    $update = mysqli_prepare($conn, "UPDATE customertable SET fullname = ?, customer_email = ?, phone = ? $password_sql WHERE customer_email = ?");
-    mysqli_stmt_bind_param($update, "ssss", $new_fullname, $new_email, $new_phone, $session_email);
-    if (mysqli_stmt_execute($update)) {
-        $_SESSION['customer_email'] = $new_email;
-        $_SESSION['fullname']       = $new_fullname;
-        $session_fullname = $new_fullname;
-        $session_email    = $new_email;
-        $session_phone    = $new_phone;
-        $customer_email   = $new_email;
-        $update_msg = '<div class="alert alert-success">Account updated successfully.</div>';
-    } else {
-        $update_msg = '<div class="alert alert-danger">Update failed. Please try again.</div>';
-    }
-
-    skip_update:;
 }
 
 // ✅ Fetch orders
@@ -108,8 +71,8 @@ if ($order_query) {
     mysqli_stmt_bind_param($order_query, "s", $session_customer_uin);
     mysqli_stmt_execute($order_query);
     $order_result = mysqli_stmt_get_result($order_query);
-    while ($orow = mysqli_fetch_assoc($order_result)) {
-        $orders[] = $orow;
+    while ($order_row = mysqli_fetch_assoc($order_result)) {
+        $orders[] = $order_row;
     }
 }
 ?>
@@ -123,6 +86,9 @@ if ($order_query) {
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="D-THEMES">
+
+        <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/icons/favicon.png">
 
     <script>
         WebFontConfig = { google: { families: ['Poppins:400,500,600,700'] } };
@@ -180,10 +146,7 @@ if ($order_query) {
                                 <a href="#account-details" class="nav-link">Account Details</a>
                             </li>
                             <li class="link-item">
-                                <a href="wishlist.php">Wishlist</a>
-                            </li>
-                            <li class="link-item">
-                                <a href="../reg/logout.php">Logout</a>
+                                <a href="signout.php">Signout</a>
                             </li>
                         </ul>
 
@@ -219,19 +182,12 @@ if ($order_query) {
                                             </div>
                                         </a>
                                     </div>
+
                                     <div class="col-lg-4 col-md-6 col-sm-4 col-xs-6 mb-4">
-                                        <a href="wishlist.php">
-                                            <div class="icon-box text-center">
-                                                <span class="icon-box-icon icon-wishlist"><i class="w-icon-heart"></i></span>
-                                                <div class="icon-box-content"><p class="text-uppercase mb-0">Wishlist</p></div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-4 col-xs-6 mb-4">
-                                        <a href="../reg/logout.php">
+                                        <a href="signout.php">
                                             <div class="icon-box text-center">
                                                 <span class="icon-box-icon icon-logout"><i class="w-icon-logout"></i></span>
-                                                <div class="icon-box-content"><p class="text-uppercase mb-0">Logout</p></div>
+                                                <div class="icon-box-content"><p class="text-uppercase mb-0">Signout</p></div>
                                             </div>
                                         </a>
                                     </div>
@@ -276,7 +232,7 @@ if ($order_query) {
                                 </table>
                                 <?php endif; ?>
 
-                                <a href="shop.php" class="btn btn-dark btn-rounded btn-icon-right">Go Shop<i class="w-icon-long-arrow-right"></i></a>
+                                <a href="shop.php" class="btn btn-dark btn-rounded btn-icon-right">Go To Shop<i class="w-icon-long-arrow-right"></i></a>
                             </div>
 
                             <!-- Account Details -->
@@ -290,8 +246,37 @@ if ($order_query) {
 
                                 <?php echo $update_msg; ?>
 
-                                <form class="form account-details-form" action="my-account.php" method="post">
-                                    <input type="hidden" name="update_account" value="1">
+                                <form class="form account-details-form" action="" method="post">
+
+                                <?php
+                                include("db_conn.php");
+                                date_default_timezone_set('Africa/Lagos');
+                                error_reporting(E_ALL);
+                                if(isset($_REQUEST["submit"])){
+                                    $fullname = $_REQUEST['fullname'];
+                                    $phone = $_REQUEST['phone'];
+                                    $email = $_REQUEST['email'];
+                                    $old_password = $_REQUEST['password'];
+                                    $confirm_password = $_REQUEST['confirm_password'];  
+                                    $new_password = $_REQUEST['new_password'];
+
+                                    $sql = "UPDATE customertable SET customername='$fullname', customer_phone='$phone', customer_email='$email', `password` = PASSWORD('$new_password') WHERE customer_uin='$session_customer_uin'";
+                                    $result = mysqli_query($conn, $sql);
+
+                                    
+                                    if($result){
+                                        $update_msg = "<div class='alert alert-success'>Account updated successfully.</div>";
+                                    } else {
+                                        $update_msg = "<div class='alert alert-danger'>Error updating account.</div>";
+                                    }
+
+                                    mysqli_close($conn);
+                                    header("Location: my-account.php?success=1");
+                                    exit(); 
+                                    
+                                }
+                                ?>
+                                    <!-- <input type="hidden" name="update_account" value="1"> -->
 
                                     <div class="form-group">
                                         <label for="fullname">Full Name *</label>
@@ -316,20 +301,23 @@ if ($order_query) {
 
                                     <h4 class="title title-password ls-25 font-weight-bold">Password Change</h4>
                                     <div class="form-group">
-                                        <label class="text-dark" for="cur-password">Current Password <small>(leave blank to keep unchanged)</small></label>
+                                        <label class="text-dark" for="cur-password">Current Password </label>
                                         <input type="password" class="form-control form-control-md" id="cur-password" name="cur_password">
                                     </div>
+
                                     <div class="form-group">
-                                        <label class="text-dark" for="new-password">New Password <small>(leave blank to keep unchanged)</small></label>
+                                        <label class="text-dark" for="new-password">New Password</label>
                                         <input type="password" class="form-control form-control-md" id="new-password" name="new_password">
                                     </div>
+
                                     <div class="form-group mb-10">
                                         <label class="text-dark" for="conf-password">Confirm New Password</label>
                                         <input type="password" class="form-control form-control-md" id="conf-password" name="conf_password">
                                     </div>
 
-                                    <button type="submit" class="btn btn-dark btn-rounded btn-sm mb-4">Save Changes</button>
+                                    <button type="submit" class="btn btn-dark btn-rounded btn-sm mb-4" name="submit">Save Changes</button>
                                 </form>
+
                             </div>
 
                         </div><!-- end tab-content -->
